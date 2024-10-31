@@ -1,5 +1,6 @@
 package com.example.budgetwise;
 
+import com.example.budgetwise.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        BorderPane root = new BorderPane();
+      BorderPane root = new BorderPane();
         VBox userLoginBox = new VBox();
 
         HBox userNameHBox = new HBox();
@@ -48,10 +49,13 @@ public class HelloApplication extends Application {
         userLoginBox.getChildren().addAll(userNameHBox,passwordHBox,serverHbox,databaseHBox,testConnectionBtn);
 
         root.setCenter(userLoginBox);
+        Database.getInstance();
         Scene scene = new Scene(root, 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

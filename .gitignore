@@ -246,5 +246,3 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,java,intellij
 
 src/main/java/com/example/budgetwise/database/Const.java
-
-.idea/misc.xml
