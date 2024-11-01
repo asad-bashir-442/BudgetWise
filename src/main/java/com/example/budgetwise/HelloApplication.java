@@ -3,11 +3,14 @@ package com.example.budgetwise;
 import com.example.budgetwise.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,7 +20,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage)  {
       BorderPane root = new BorderPane();
         VBox userLoginBox = new VBox();
 
@@ -46,12 +49,22 @@ public class HelloApplication extends Application {
 
         Button testConnectionBtn = new Button("Test Connection");
 
-        userLoginBox.getChildren().addAll(userNameHBox,passwordHBox,serverHbox,databaseHBox,testConnectionBtn);
+        Image logo=new Image(getClass().getResource("logo1.png").toString());
+        ImageView logoView=new ImageView(logo);
+        logoView.setFitHeight(200);
+        logoView.setFitWidth(200);
 
+      userNameHBox.setAlignment(Pos.CENTER);
+      passwordHBox.setAlignment(Pos.CENTER);
+      serverHbox.setAlignment(Pos.CENTER);
+      databaseHBox.setAlignment(Pos.CENTER);
+
+        userLoginBox.setAlignment(Pos.CENTER);
+        userLoginBox.getChildren().addAll(logoView,userNameHBox,passwordHBox,serverHbox,databaseHBox,testConnectionBtn);
         root.setCenter(userLoginBox);
         Database.getInstance();
-        Scene scene = new Scene(root, 320, 240);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(root, 500, 500);
+        stage.setTitle("BudgetWise");
         stage.setScene(scene);
         stage.show();
 

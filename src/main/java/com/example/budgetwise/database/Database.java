@@ -1,10 +1,10 @@
 package com.example.budgetwise.database;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 
-import static com.example.budgetwise.database.Const.*;
+import static com.example.budgetwise.database.newConst.*;
+
 
 public class Database {
 
