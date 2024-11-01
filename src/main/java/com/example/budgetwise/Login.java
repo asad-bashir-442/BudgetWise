@@ -1,8 +1,8 @@
 package com.example.budgetwise;
 
 import com.example.budgetwise.database.Database;
+import com.example.budgetwise.database.newConst;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,11 +16,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Login extends Application {
     @Override
     public void start(Stage stage)  {
+
+      String infoFile="info.txt";
       BorderPane root = new BorderPane();
         VBox userLoginBox = new VBox();
 
@@ -48,6 +51,18 @@ public class HelloApplication extends Application {
 
 
         Button testConnectionBtn = new Button("Test Connection");
+        testConnectionBtn.setOnAction(event -> {
+          newConst.DB_NAME=databaseTextField.getText();
+          newConst.DB_PASS=passwordField.getText();
+          newConst.DB_USER=userNameTextField.getText();
+
+//          if(databaseConnection()){
+//            System.out.println("connected successfully");
+//          }else {
+//            System.out.println("failed,Plz check your input again");
+//          }
+
+        });
 
         Image logo=new Image(getClass().getResource("logo1.png").toString());
         ImageView logoView=new ImageView(logo);
@@ -69,6 +84,18 @@ public class HelloApplication extends Application {
         stage.show();
 
 
+    }
+
+    public void saveUserInfo(String db_name, String db_pass) throws IOException {
+      String info="info.txt";
+      FileWriter myWriter=new FileWriter(info);
+      myWriter.write(db_name+"\n");
+      myWriter.write(db_pass);
+      myWriter.close();
+    }
+
+    public void databaseConnection(){
+      //no idea how to write the code
     }
 
     public static void main(String[] args) {
