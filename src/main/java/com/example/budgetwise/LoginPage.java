@@ -1,5 +1,6 @@
 package com.example.budgetwise;
 
+import com.example.budgetwise.database.newConst;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +11,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import static com.example.budgetwise.database.newConst.*;
 
 public class LoginPage extends Stage {
     public LoginPage(){
@@ -30,6 +38,25 @@ public class LoginPage extends Stage {
         TextField databaseTextField = new TextField();
 
         Button testConnectionBtn = new Button("Test Connection");
+        //write method on the button
+        testConnectionBtn.setOnAction(event -> {
+            DB_NAME=databaseTextField.getText();
+            DB_PASS=passwordField.getText();
+            DB_USER=userNameTextField.getText();
+            DB_LOCATION=serverTextField.getText();
+
+            if(validCredentials(DB_NAME,DB_PASS,DB_LOCATION,DB_USER)){
+                try {
+                    saveUserInfo(DB_NAME, DB_PASS, DB_LOCATION, DB_USER);
+                    HomePage homePage=new HomePage();
+                    homePage.show();
+                    this.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
         Image logo=new Image(getClass().getResource("logo1.png").toString());
         ImageView logoView=new ImageView(logo);
@@ -58,6 +85,31 @@ public class LoginPage extends Stage {
         super.show();
 
 
+    }
+    public void saveUserInfo(String db_name, String db_pass ,String dblocation, String dbuser) throws IOException {
+        String info="info.txt";
+        FileWriter myWriter=new FileWriter(info);
+        myWriter.write(db_name+"\n");
+        myWriter.write(db_pass+"\n");
+        myWriter.write(dblocation+"\n");
+        myWriter.write(dbuser);
+
+        myWriter.close();
+    }
+    public boolean validCredentials(String dbName, String dbpass, String dblocation, String dbuser){
+        Connection connection;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.
+                    getConnection("jdbc:mysql://localhost/"+ DB_NAME +
+                                    "?serverTimezone=UTC",
+                            DB_USER,
+                            DB_PASS);
+            return connection.isValid(300);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
