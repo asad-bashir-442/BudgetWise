@@ -16,15 +16,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import static com.example.budgetwise.database.newConst.*;
 
 public class Login extends Application {
     @Override
     public void start(Stage stage)  {
 
       String infoFile="info.txt";
-      BorderPane root = new BorderPane();
+      checkInfoExist();
+        BorderPane root = new BorderPane();
         VBox userLoginBox = new VBox();
 
         HBox userNameHBox = new HBox();
@@ -45,7 +51,7 @@ public class Login extends Application {
         serverHbox.getChildren().addAll(serverLabel,serverTextField);
 
         HBox databaseHBox = new HBox();
-        Label databaseLabel = new Label("Database Connection");
+        Label databaseLabel = new Label("Database Name");
         TextField databaseTextField = new TextField();
         databaseHBox.getChildren().addAll(databaseLabel,databaseTextField);
 
@@ -55,12 +61,18 @@ public class Login extends Application {
           newConst.DB_NAME=databaseTextField.getText();
           newConst.DB_PASS=passwordField.getText();
           newConst.DB_USER=userNameTextField.getText();
+          DB_LOCATION=serverTextField.getText();
 
-//          if(databaseConnection()){
-//            System.out.println("connected successfully");
-//          }else {
-//            System.out.println("failed,Plz check your input again");
-//          }
+            if(validCredentials(DB_NAME,DB_PASS,DB_LOCATION,DB_USER)){
+              try {
+                saveUserInfo(DB_NAME, DB_PASS, DB_LOCATION, DB_USER);
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+
+            }
+
+
 
         });
 
@@ -86,17 +98,41 @@ public class Login extends Application {
 
     }
 
-    public void saveUserInfo(String db_name, String db_pass) throws IOException {
+    public void saveUserInfo(String db_name, String db_pass ,String dblocation, String dbuser) throws IOException {
       String info="info.txt";
       FileWriter myWriter=new FileWriter(info);
       myWriter.write(db_name+"\n");
-      myWriter.write(db_pass);
+      myWriter.write(db_pass+"\n");
+      myWriter.write(dblocation+"\n");
+      myWriter.write(dbuser);
+
       myWriter.close();
     }
-
-    public void databaseConnection(){
-      //no idea how to write the code
+    public boolean validCredentials(String dbName, String dbpass, String dblocation, String dbuser){
+      Connection connection;
+      try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        connection = DriverManager.
+                getConnection("jdbc:mysql://localhost/"+ DB_NAME +
+                                "?serverTimezone=UTC",
+                        DB_USER,
+                        DB_PASS);
+        return connection.isValid(300);
+      }catch (Exception e){
+        e.printStackTrace();
+      }
+      return false;
     }
+
+
+    public void checkInfoExist(){
+      File info=new File("Info.txt");
+      Login login=new Login();
+      if(info.exists()){
+        //showHomePage
+      }
+    }
+
 
     public static void main(String[] args) {
         launch();
