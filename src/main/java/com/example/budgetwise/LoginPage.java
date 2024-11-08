@@ -1,6 +1,5 @@
 package com.example.budgetwise;
 
-import com.example.budgetwise.database.newConst;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import static com.example.budgetwise.database.newConst.*;
+import static com.example.budgetwise.database.NewConst.*;
 
 public class LoginPage extends Stage {
     public LoginPage(){
@@ -45,7 +44,7 @@ public class LoginPage extends Stage {
             DB_USER=userNameTextField.getText();
             DB_LOCATION=serverTextField.getText();
 
-            if(validCredentials(DB_NAME,DB_PASS,DB_LOCATION,DB_USER)){
+            if(validCredentials()){
                 try {
                     saveUserInfo(DB_NAME, DB_PASS, DB_LOCATION, DB_USER);
                     HomePage homePage=new HomePage();
@@ -96,7 +95,7 @@ public class LoginPage extends Stage {
 
         myWriter.close();
     }
-    public boolean validCredentials(String dbName, String dbpass, String dblocation, String dbuser){
+    public boolean validCredentials(){
         Connection connection;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
