@@ -33,10 +33,10 @@ public class DBConst {
 
 
     /**
-     * Currency type table
+     * Currency table
      */
 
-    public static String TABLE_CURRENCY = "currencytype";
+    public static String TABLE_CURRENCY = "currency";
 
     public static String CURRENCY_COLUMN_ID = "currency_id";
 

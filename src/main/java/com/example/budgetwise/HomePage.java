@@ -4,8 +4,10 @@ import com.example.budgetwise.database.Database;
 import com.example.budgetwise.database.NewConst;
 import com.example.budgetwise.models.Account;
 import com.example.budgetwise.models.AccountType;
+import com.example.budgetwise.models.Category;
 import com.example.budgetwise.tables.AccountTable;
 import com.example.budgetwise.tables.AccountTypeTable;
+import com.example.budgetwise.tables.CategoryTable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -24,6 +26,7 @@ public class HomePage extends Stage {
 
         ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
+        ArrayList<Category> categories = CategoryTable.getInstance().getAllCategories();
 
         for (Account account : accounts){
             System.out.println(account);
@@ -31,6 +34,10 @@ public class HomePage extends Stage {
 
         for (AccountType accountType : accountTypes){
             System.out.println(accountType);
+        }
+
+        for (Category category : categories){
+            System.out.println(category);
         }
 
         super.setTitle("homepage");
