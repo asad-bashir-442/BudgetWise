@@ -3,9 +3,11 @@ package com.example.budgetwise;
 import com.example.budgetwise.models.Account;
 import com.example.budgetwise.models.AccountType;
 import com.example.budgetwise.models.Currency;
+import com.example.budgetwise.models.TransactionType;
 import com.example.budgetwise.tables.AccountTable;
 import com.example.budgetwise.tables.AccountTypeTable;
 import com.example.budgetwise.tables.CurrencyTable;
+import com.example.budgetwise.tables.TransactionTypeTable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -24,6 +26,7 @@ public class HomePage extends Stage {
         ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
         ArrayList<Currency> currencies = CurrencyTable.getInstance().getAllCurrency();
+        ArrayList<TransactionType> transactionTypes = TransactionTypeTable.getInstance().getAllTransactionTypes();
 
         for (Account account : accounts){
             System.out.println(account);
@@ -35,6 +38,10 @@ public class HomePage extends Stage {
 
         for (Currency category : currencies){
             System.out.println(category);
+        }
+
+        for (TransactionType transactionType : transactionTypes){
+            System.out.println(transactionType);
         }
 
         super.setTitle("homepage");

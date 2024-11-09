@@ -22,6 +22,7 @@ public class Database {
               createTable(DBConst.TABLE_ACCOUNT_TYPE, DBConst.CREATE_TABLE_ACCOUNT_TYPES,connection);
               createTable(DBConst.TABLE_CURRENCY, DBConst.CREATE_TABLE_CURRENCY,connection);
               createTable(DBConst.TABLE_ACCOUNT, DBConst.CREATE_TABLE_ACCOUNTS,connection);
+              createTable(DBConst.TABLE_TRANSACTION_TYPE,DBConst.CREATE_TABLE_TRANSACTION_TYPES,connection);
         }catch (Exception e){
             e.printStackTrace();
         }

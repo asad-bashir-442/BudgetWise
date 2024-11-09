@@ -27,8 +27,9 @@ public class DBConst {
 
     public static String TABLE_ACCOUNT_TYPE = "accounttype";
 
-    public static String ACCOUNT_TYPE_COLUMN_NAME = "account_type";
     public static String ACCOUNT_TYPE_COLUMN_ID = "account_type_id";
+
+    public static String ACCOUNT_TYPE_COLUMN_NAME = "account_type";
 
 
 
@@ -41,6 +42,23 @@ public class DBConst {
     public static String CURRENCY_COLUMN_ID = "currency_id";
 
     public static String CURRENCY_COLUMN_NAME = "currency_type";
+
+
+    /**
+     * Transaction type table
+     */
+    public static String TABLE_TRANSACTION_TYPE = "transactiontype";
+
+    public static String TRANSACTION_TYPE_COLUMN_ID = "transaction_type_id";
+
+    public static String TRANSACTION_TYPE_COLUMN_NAME = "transaction_type";
+
+
+    public static String CREATE_TABLE_TRANSACTION_TYPES =
+            " CREATE TABLE " + TABLE_TRANSACTION_TYPE + " (" +
+                    TRANSACTION_TYPE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                    TRANSACTION_TYPE_COLUMN_NAME + " VARCHAR(50) NOT NULL" +
+                    ");";
 
 
 
