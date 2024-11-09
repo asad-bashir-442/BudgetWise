@@ -1,20 +1,17 @@
 package com.example.budgetwise;
 
-import com.example.budgetwise.database.Database;
-import com.example.budgetwise.database.NewConst;
 import com.example.budgetwise.models.Account;
 import com.example.budgetwise.models.AccountType;
-import com.example.budgetwise.models.Category;
+import com.example.budgetwise.models.Currency;
 import com.example.budgetwise.tables.AccountTable;
 import com.example.budgetwise.tables.AccountTypeTable;
-import com.example.budgetwise.tables.CategoryTable;
+import com.example.budgetwise.tables.CurrencyTable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class HomePage extends Stage {
     //no content just use it to show here is the home page
@@ -26,7 +23,7 @@ public class HomePage extends Stage {
 
         ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
-        ArrayList<Category> categories = CategoryTable.getInstance().getAllCategories();
+        ArrayList<Currency> currencies = CurrencyTable.getInstance().getAllCurrency();
 
         for (Account account : accounts){
             System.out.println(account);
@@ -36,7 +33,7 @@ public class HomePage extends Stage {
             System.out.println(accountType);
         }
 
-        for (Category category : categories){
+        for (Currency category : currencies){
             System.out.println(category);
         }
 

@@ -1,46 +1,46 @@
 package com.example.budgetwise.tables;
 
-import com.example.budgetwise.dao.CategoryDAO;
+import com.example.budgetwise.dao.CurrencyDAO;
 import com.example.budgetwise.database.DBConst;
 import com.example.budgetwise.database.Database;
-import com.example.budgetwise.models.Category;
+import com.example.budgetwise.models.Currency;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CategoryTable implements CategoryDAO {
+public class CurrencyTable implements CurrencyDAO {
 
-    private static CategoryTable instance;
+    private static CurrencyTable instance;
 
     private Database db = Database.getInstance();
 
-    private ArrayList<Category> categories;
+    private ArrayList<Currency> currencies;
 
-    private CategoryTable(){
+    private CurrencyTable(){
 
     }
 
-    public static CategoryTable getInstance(){
+    public static CurrencyTable getInstance(){
         if (instance == null){
-            instance = new CategoryTable();
+            instance = new CurrencyTable();
         }
         return instance;
     }
 
     @Override
-    public ArrayList<Category> getAllCategories() {
+    public ArrayList<Currency> getAllCurrency() {
         String query = "SELECT * FROM " + DBConst.TABLE_CURRENCY;
 
-        categories = new ArrayList<>();
+        currencies = new ArrayList<>();
 
         try{
             Statement getItems = db.getConnection().createStatement();
             ResultSet data = getItems.executeQuery(query);
 
             while (data.next()){
-                categories.add(new Category(data.getInt(DBConst.CURRENCY_COLUMN_ID),
+                currencies.add(new Currency(data.getInt(DBConst.CURRENCY_COLUMN_ID),
                                             data.getString(DBConst.CURRENCY_COLUMN_NAME)));
 
 
@@ -49,7 +49,7 @@ public class CategoryTable implements CategoryDAO {
             e.printStackTrace();
         }
 
-        return categories;
+        return currencies;
 
 
     }

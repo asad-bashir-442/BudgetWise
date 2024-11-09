@@ -1,6 +1,6 @@
 package com.example.budgetwise.models;
 
-public class Category {
+public class Currency {
     private int id;
 
     public int getId() {
@@ -21,7 +21,7 @@ public class Category {
 
     private String type;
 
-    public Category(int id, String type){
+    public Currency(int id, String type){
         this.id = id;
         this.type = type;
     }
