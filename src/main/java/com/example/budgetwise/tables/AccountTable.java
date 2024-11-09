@@ -13,10 +13,18 @@ import java.util.ArrayList;
 public class AccountTable implements AccountDAO {
 
 
+    private static AccountTable instance;
     private Database db = Database.getInstance();
 
-    public AccountTable(){
+    private AccountTable(){
 
+    }
+
+    public static AccountTable getInstance(){
+        if(instance == null){
+            instance = new AccountTable();
+        }
+        return instance;
     }
 
     private ArrayList<Account> accounts;
@@ -32,8 +40,8 @@ public class AccountTable implements AccountDAO {
         while (data.next()){
             accounts.add(new Account(data.getInt(DBConst.ACCOUNT_COLUMN_ID),
                     data.getString(DBConst.ACCOUNT_COLUMN_NAME),
-                    data.getDouble(DBConst.ACCOUNT_BALANCE),
-                    data.getString(DBConst.ACCOUNT_CREATE_DATE)));
+                    data.getDouble(DBConst.ACCOUNT_COLUMN_BALANCE),
+                    data.getString(DBConst.ACCOUNT_COLUMN_CREATE_DATE)));
 
 
         }

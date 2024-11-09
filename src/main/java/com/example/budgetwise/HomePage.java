@@ -3,7 +3,9 @@ package com.example.budgetwise;
 import com.example.budgetwise.database.Database;
 import com.example.budgetwise.database.NewConst;
 import com.example.budgetwise.models.Account;
+import com.example.budgetwise.models.AccountType;
 import com.example.budgetwise.tables.AccountTable;
+import com.example.budgetwise.tables.AccountTypeTable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -18,13 +20,17 @@ public class HomePage extends Stage {
         Text text=new Text("HomePage");
         BorderPane borderPane=new BorderPane();
 
-        Database.getInstance();
         borderPane.setCenter(text);
 
-        ArrayList<Account> accounts = new AccountTable().getAllAccounts();
+        ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
+        ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
 
         for (Account account : accounts){
             System.out.println(account);
+        }
+
+        for (AccountType accountType : accountTypes){
+            System.out.println(accountType);
         }
 
         super.setTitle("homepage");
