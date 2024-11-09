@@ -40,6 +40,8 @@ public class MainEntry extends Application {
                     }
                 }
 
+                Database.getInstance();
+
                 reader.close();
             } catch (IOException e){
                 e.printStackTrace();

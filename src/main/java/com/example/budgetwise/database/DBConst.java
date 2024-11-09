@@ -12,9 +12,9 @@ public class DBConst {
 
     public static String ACCOUNT_COLUMN_NAME = "account_name";
 
-    public static String ACCOUNT_COLUMN_TYPE_ID = "account_by_id";
+    public static String ACCOUNT_COLUMN_TYPE_ID = "account_type_id";
 
-    public static String ACCOUNT_BALANCE = "balance";
+    public static String ACCOUNT_BALANCE = "account_balance";
 
     public static String ACCOUNT_CURRENCY_ID = "currency_id";
 
@@ -28,7 +28,7 @@ public class DBConst {
     public static String TABLE_ACCOUNT_TYPE = "accounttype";
 
     public static String ACCOUNT_TYPE_COLUMN_NAME = "account_type";
-    public static String ACCOUNT_TYPE_COLUMN_ID = "account_id";
+    public static String ACCOUNT_TYPE_COLUMN_ID = "account_type_id";
 
 
 
@@ -70,6 +70,4 @@ public class DBConst {
                     CURRENCY_TYPE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                     CURRENCY_TYPE_COLUMN_NAME + " VARCHAR(50) NOT NULL" +
                     ");";
-
-
 }
