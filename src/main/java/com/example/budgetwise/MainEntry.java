@@ -1,7 +1,7 @@
 package com.example.budgetwise;
 
 import com.example.budgetwise.database.Database;
-import com.example.budgetwise.database.NewConst;
+import com.example.budgetwise.database.Const;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -15,10 +15,10 @@ public class MainEntry extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-        File file=new File(FILE);
+        File file = new File(FILE);
         if(!file.exists()){
 
-        LoginPage loginPage=new LoginPage();
+        LoginPage loginPage = new LoginPage();
         loginPage.show();
         }else{
 
@@ -29,18 +29,16 @@ public class MainEntry extends Application {
                 while ((line = reader.readLine()) != null){
                     lineCount++;
                     if (lineCount == 1){
-                        NewConst.DB_NAME = line;
+                        Const.DB_NAME = line;
                     } else if (lineCount == 2) {
-                        NewConst.DB_PASS = line;
+                        Const.DB_PASS = line;
                     } else if (lineCount == 3) {
-                        NewConst.DB_LOCATION = line;
+                        Const.DB_LOCATION = line;
                     } else if (lineCount == 4) {
-                        NewConst.DB_USER = line;
+                        Const.DB_USER = line;
 
                     }
                 }
-
-                Database.getInstance();
 
                 reader.close();
             } catch (IOException e){

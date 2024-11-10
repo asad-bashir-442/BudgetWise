@@ -3,7 +3,6 @@ package com.example.budgetwise.tables;
 import com.example.budgetwise.dao.AccountTypeDAO;
 import com.example.budgetwise.database.DBConst;
 import com.example.budgetwise.database.Database;
-import com.example.budgetwise.models.Account;
 import com.example.budgetwise.models.AccountType;
 
 import java.sql.ResultSet;

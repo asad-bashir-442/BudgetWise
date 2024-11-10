@@ -1,13 +1,7 @@
 package com.example.budgetwise;
 
-import com.example.budgetwise.models.Account;
-import com.example.budgetwise.models.AccountType;
-import com.example.budgetwise.models.Currency;
-import com.example.budgetwise.models.TransactionType;
-import com.example.budgetwise.tables.AccountTable;
-import com.example.budgetwise.tables.AccountTypeTable;
-import com.example.budgetwise.tables.CurrencyTable;
-import com.example.budgetwise.tables.TransactionTypeTable;
+import com.example.budgetwise.models.*;
+import com.example.budgetwise.tables.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -27,6 +21,8 @@ public class HomePage extends Stage {
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
         ArrayList<Currency> currencies = CurrencyTable.getInstance().getAllCurrency();
         ArrayList<TransactionType> transactionTypes = TransactionTypeTable.getInstance().getAllTransactionTypes();
+        ArrayList<Transaction> transactions = TransactionTable.getInstance().getAllTransactions();
+        ArrayList<Category> categories = CategoryTable.getInstance().getAllCategories();
 
         for (Account account : accounts){
             System.out.println(account);
@@ -42,6 +38,14 @@ public class HomePage extends Stage {
 
         for (TransactionType transactionType : transactionTypes){
             System.out.println(transactionType);
+        }
+
+        for (Transaction transaction : transactions){
+            System.out.println(transaction);
+        }
+
+        for (Category category : categories){
+            System.out.println(category);
         }
 
         super.setTitle("homepage");

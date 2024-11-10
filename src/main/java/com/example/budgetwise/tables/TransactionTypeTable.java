@@ -3,7 +3,6 @@ package com.example.budgetwise.tables;
 import com.example.budgetwise.dao.TransactionTypeDAO;
 import com.example.budgetwise.database.DBConst;
 import com.example.budgetwise.database.Database;
-import com.example.budgetwise.models.Currency;
 import com.example.budgetwise.models.TransactionType;
 
 import java.sql.ResultSet;

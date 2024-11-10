@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import static com.example.budgetwise.database.NewConst.*;
+import static com.example.budgetwise.database.Const.*;
 
 public class LoginPage extends Stage {
     public LoginPage(){
@@ -87,7 +87,7 @@ public class LoginPage extends Stage {
     }
     public void saveUserInfo(String db_name, String db_pass ,String dblocation, String dbuser) throws IOException {
         String info="info.txt";
-        FileWriter myWriter=new FileWriter(info);
+        FileWriter myWriter = new FileWriter(info);
         myWriter.write(db_name+"\n");
         myWriter.write(db_pass+"\n");
         myWriter.write(dblocation+"\n");
