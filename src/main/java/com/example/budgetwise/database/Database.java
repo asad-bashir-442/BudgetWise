@@ -19,12 +19,18 @@ public class Database {
                             DB_USER,
                             DB_PASS);
             System.out.println("Created Connection!");
-              createTable(DBConst.TABLE_ACCOUNT_TYPE, DBConst.CREATE_TABLE_ACCOUNT_TYPES,connection);
-              createTable(DBConst.TABLE_CURRENCY, DBConst.CREATE_TABLE_CURRENCY,connection);
-              createTable(DBConst.TABLE_ACCOUNT, DBConst.CREATE_TABLE_ACCOUNTS,connection);
-              createTable(DBConst.TABLE_TRANSACTION_TYPE,DBConst.CREATE_TABLE_TRANSACTION_TYPES,connection);
-              createTable(DBConst.TABLE_TRANSACTION,DBConst.CREATE_TABLE_TRANSACTIONS,connection);
-              createTable(DBConst.TABLE_CATEGORY,DBConst.CREATE_TABLE_CATEGORIES,connection);
+            createTable(DBConst.TABLE_ACCOUNT_TYPE, DBConst.CREATE_TABLE_ACCOUNT_TYPES,connection);
+            createTable(DBConst.TABLE_CURRENCY, DBConst.CREATE_TABLE_CURRENCY,connection);
+            createTable(DBConst.TABLE_ACCOUNT, DBConst.CREATE_TABLE_ACCOUNTS,connection);
+            createTable(DBConst.TABLE_TRANSACTION_TYPE,DBConst.CREATE_TABLE_TRANSACTION_TYPES,connection);
+            createTable(DBConst.TABLE_TRANSACTION,DBConst.CREATE_TABLE_TRANSACTIONS,connection);
+            createTable(DBConst.TABLE_CATEGORY,DBConst.CREATE_TABLE_CATEGORIES,connection);
+
+            /**
+             * This method populates the tables with mock data
+             * should only be run once. Uncomment then Comment again.
+             */
+            //populateMockData();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -49,6 +55,23 @@ public class Database {
             createTable.execute(tableQuery);
             System.out.println("The " + tableName + " table has been created");
         }
+    }
+
+    public void populateMockData(){
+
+        try{
+            connection.createStatement().execute(DBConst.POPULATE_TRANSACTION_TYPE_TABLE);
+            connection.createStatement().execute(DBConst.POPULATE_CATEGORY_TABLE);
+            connection.createStatement().execute(DBConst.POPULATE_CURRENCY_TABLE);
+            connection.createStatement().execute(DBConst.POPULATE_ACCOUNT_TYPE_TABLE);
+            connection.createStatement().execute(DBConst.POPULATE_TRANSACTION_TABLE);
+            connection.createStatement().execute(DBConst.POPULATE_ACCOUNT_TABLE);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Connection getConnection() {
