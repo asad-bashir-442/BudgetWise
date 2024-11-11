@@ -3,12 +3,17 @@ package com.example.budgetwise;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 
 public class TransactionForm extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage)  {
 
         //gridpane layout for the form
         GridPane gridPane = new GridPane();
@@ -16,8 +21,19 @@ public class TransactionForm extends Application {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
+        //Creating label and text field for the ->Transaction Name Input
+        Label name = new Label("Transaction Name:");
+        TextField nameField = new TextField();
+        nameField.setPrefWidth(120);
+        gridPane.add(name,0,0);
+        gridPane.add(nameField,1,0);
 
-        Scene scene = new Scene(gridPane, 800,500);
+        BorderPane pane = new BorderPane(gridPane);
+        pane.setCenter(gridPane);
+
+
+
+        Scene scene = new Scene(pane, 800,500);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Transaction Form");
         primaryStage.show();
