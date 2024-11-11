@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -50,8 +51,21 @@ public class TransactionForm extends Application {
         gridPane.add(currencyLabel,0,3);
         gridPane.add(currencyComboBox,1,3);
 
-        //
+        //Cresting Label and textField for description
+        Label descriptionLabel = new Label("Description");
+        TextArea textArea = new TextArea("Write your description");
+        textArea.setPrefRowCount(3);
+        gridPane.add(descriptionLabel,0,4);
+        gridPane.add(textArea,1,4);
 
+        // for category
+        Label categoryLabel = new Label("Category");
+        ComboBox<String> categoryComboBox = new ComboBox<>();
+        categoryComboBox.getItems().addAll("Food","Transport","Utilities","Entertainment","clothing","other");
+        gridPane.add(categoryLabel,0,5);
+        gridPane.add(categoryComboBox,1,5);
+
+        
         BorderPane pane = new BorderPane(gridPane);
         pane.setCenter(gridPane);
 
