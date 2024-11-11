@@ -67,12 +67,10 @@ public class TransactionForm extends Application {
         Button button = new Button("Add Transaction");
         gridPane.add(button,1,6);
 
-        BorderPane pane = new BorderPane(gridPane);
-        pane.setCenter(gridPane);
 
 
 
-        Scene scene = new Scene(pane, 800,500);
+        Scene scene = new Scene(gridPane, 800,500);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Transaction Form");
         primaryStage.show();
