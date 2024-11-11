@@ -29,12 +29,28 @@ public class TransactionForm extends Application {
         gridPane.add(name,0,0);
         gridPane.add(nameField,1,0);
 
-        // Creating label and text field for account type
-        Label accountLabel = new Label("Account Type");
+        // Creating label and comboBox for account type
+        Label accountLabel = new Label("Account Type:");
         ComboBox<String> accountComboBox = new ComboBox<>();
         accountComboBox.getItems().addAll("Checking", "Savings");
         gridPane.add(accountLabel,0,1);
         gridPane.add(accountComboBox,1,1);
+
+        // Creating label and Text Field for amount
+        Label amountLabel = new Label("Amount:");
+        TextField amountField = new TextField();
+        amountField.setPrefWidth(120);
+        gridPane.add(amountLabel,0,2);
+        gridPane.add(amountField,1,2);
+
+        //Creating label and combobox for currency type
+        Label currencyLabel = new Label("Currency:");
+        ComboBox<String> currencyComboBox = new ComboBox<>();
+        currencyComboBox.getItems().addAll("USD", "CAD");
+        gridPane.add(currencyLabel,0,3);
+        gridPane.add(currencyComboBox,1,3);
+
+        //
 
         BorderPane pane = new BorderPane(gridPane);
         pane.setCenter(gridPane);
