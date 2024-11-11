@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -20,7 +18,7 @@ public class TransactionForm extends Application {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
-        //Creating label and text field for the ->Transaction Name Input
+        //Creating label and text field for the ->Goal Name Input
         Label name = new Label("Transaction Name:");
         TextField nameField = new TextField();
         nameField.setPrefWidth(120);
