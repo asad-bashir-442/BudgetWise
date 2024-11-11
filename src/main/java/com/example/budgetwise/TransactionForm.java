@@ -3,6 +3,7 @@ package com.example.budgetwise;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +28,13 @@ public class TransactionForm extends Application {
         nameField.setPrefWidth(120);
         gridPane.add(name,0,0);
         gridPane.add(nameField,1,0);
+
+        // Creating label and text field for account type
+        Label accountLabel = new Label("Account Type");
+        ComboBox<String> accountComboBox = new ComboBox<>();
+        accountComboBox.getItems().addAll("Checking", "Savings");
+        gridPane.add(accountLabel,0,1);
+        gridPane.add(accountComboBox,1,1);
 
         BorderPane pane = new BorderPane(gridPane);
         pane.setCenter(gridPane);
