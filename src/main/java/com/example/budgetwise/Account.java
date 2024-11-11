@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class Account extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage)  {
 
         // grid pane Layout for the form
         GridPane gridPane = new GridPane();
@@ -33,8 +33,24 @@ public class Account extends Application {
         gridPane.add(accountLabel, 0, 1);
         gridPane.add(accountComboBox, 1, 1);
 
+        //For account balance
+        Label amountLabel = new Label("Balance:");
+        TextField amountField = new TextField();
+        amountField.setPrefWidth(120);
+        gridPane.add(amountLabel,0,2);
+        gridPane.add(amountField,1,2);
 
+        Label currency = new Label("Currency:");
+        ComboBox<String> currencyComboBox = new ComboBox<>();
+        currencyComboBox.getItems().addAll("USD","CAD");
+        gridPane.add(currency, 0,3);
+        gridPane.add(currencyComboBox,1,3);
 
+        Label dateLabel = new Label("Create Date");
+        TextField dateField = new TextField();
+        dateField.setPrefWidth(120);
+        gridPane.add(dateLabel,0,4);
+        gridPane.add(dateField,1,4);
 
 
         Scene scene = new Scene(gridPane, 800,500);
