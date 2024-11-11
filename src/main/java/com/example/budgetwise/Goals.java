@@ -53,9 +53,7 @@ public class Goals extends Application {
         Button button = new Button("Add new Goal");
         gridPane.add(button,1,5);
 
-
-
-
+        
 
         Scene scene = new Scene(gridPane, 800,500);
         primaryStage.setScene(scene);
