@@ -7,7 +7,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
+
 import java.util.ArrayList;
+
 
 public class HomePage extends Stage {
     //no content just use it to show here is the home page
