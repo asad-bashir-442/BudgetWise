@@ -5,7 +5,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Stack;
 
 public class HomePage extends Stage {
     //no content just use it to show here is the home page
