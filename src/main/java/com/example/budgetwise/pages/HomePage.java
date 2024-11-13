@@ -1,8 +1,12 @@
-package com.example.budgetwise;
+package com.example.budgetwise.pages;
 
 import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
+import com.example.budgetwise.tabs.AddAccountTab;
+import com.example.budgetwise.tabs.AddTransactionTab;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -12,10 +16,21 @@ import java.util.ArrayList;
 public class HomePage extends Stage {
     //no content just use it to show here is the home page
     public HomePage(){
-        Text text=new Text("HomePage");
         BorderPane borderPane=new BorderPane();
 
-        borderPane.setCenter(text);
+        TabPane tabPane = new TabPane();
+
+        AddTransactionTab addTransactionTab = new AddTransactionTab();
+        AddAccountTab addAccountTab = new AddAccountTab();
+
+        tabPane.getTabs().addAll(addTransactionTab,addAccountTab);
+
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+
+
+        borderPane.setTop(tabPane);
+
 
         ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
@@ -49,6 +64,6 @@ public class HomePage extends Stage {
         }
 
         super.setTitle("homepage");
-        super.setScene(new Scene(borderPane,500,500));
+        super.setScene(new Scene(borderPane,800,500));
     }
 }

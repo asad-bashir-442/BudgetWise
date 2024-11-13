@@ -1,4 +1,4 @@
-package com.example.budgetwise;
+package com.example.budgetwise.pages;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
