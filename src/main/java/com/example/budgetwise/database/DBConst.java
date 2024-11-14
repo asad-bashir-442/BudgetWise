@@ -18,7 +18,6 @@ public class DBConst {
 
     public static String ACCOUNT_COLUMN_CURRENCY_ID = "currency_id";
 
-    public static String ACCOUNT_COLUMN_CREATE_DATE = "created_date";
 
 
     /**
@@ -59,6 +58,8 @@ public class DBConst {
 
     public static String TRANSACTION_COLUMN_DESCRIPTION = "transaction_description";
 
+    public static String TRANSACTION_COLUMN_ACCOUNT_ID = "transaction_account_id";
+
 
 
 
@@ -71,6 +72,7 @@ public class DBConst {
 
     public static String TRANSACTION_TYPE_COLUMN_NAME = "transaction_type";
 
+    public static String TRANSACTION_COLUMN_CATEGORY_ID = "transaction_category_id";
 
     /**
      * Category table
@@ -82,13 +84,11 @@ public class DBConst {
 
     public static String CATEGORY_COLUMN_NAME = "category_name";
 
-    public static String CATEGORY_COLUMN_LIMIT = "category_limit";
 
     public static String CREATE_TABLE_CATEGORIES =
             " CREATE TABLE " + TABLE_CATEGORY + " (" +
                 CATEGORY_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                CATEGORY_COLUMN_NAME + " VARCHAR(255) NOT NULL, " +
-                CATEGORY_COLUMN_LIMIT + " DECIMAL(15,2) NOT NULL " +
+                CATEGORY_COLUMN_NAME + " VARCHAR(255) NOT NULL" +
                 ");";
 
 
@@ -105,8 +105,14 @@ public class DBConst {
                 TRANSACTION_COLUMN_AMOUNT + " DECIMAL (15,2) NOT NULL, " +
                 TRANSACTION_COLUMN_TYPE_ID + " INT NOT NULL, " +
                 TRANSACTION_COLUMN_DESCRIPTION + " VARCHAR(255) NOT NULL, " +
+                TRANSACTION_COLUMN_CATEGORY_ID + " INT NOT NULL, " +
+                TRANSACTION_COLUMN_ACCOUNT_ID + " INT NOT NULL, " +
                 "FOREIGN KEY (" + TRANSACTION_COLUMN_TYPE_ID + ")" +
-                    " REFERENCES " + TABLE_TRANSACTION_TYPE + "(" + TRANSACTION_TYPE_COLUMN_ID + "));";
+                    " REFERENCES " + TABLE_TRANSACTION_TYPE + "(" + TRANSACTION_TYPE_COLUMN_ID + ")," +
+                "FOREIGN KEY (" + TRANSACTION_COLUMN_CATEGORY_ID + ")" +
+                    " REFERENCES " + TABLE_CATEGORY + "(" + CATEGORY_COLUMN_ID + "), " +
+                "FOREIGN KEY (" + TRANSACTION_COLUMN_ACCOUNT_ID + ")" +
+                    " REFERENCES " + TABLE_ACCOUNT + "(" + ACCOUNT_COLUMN_ID + "));";
 
 
 
@@ -118,7 +124,6 @@ public class DBConst {
             ACCOUNT_COLUMN_TYPE_ID + " INT NOT NULL, " +
             ACCOUNT_COLUMN_BALANCE + " DECIMAL (15,2) NOT NULL, " +
             ACCOUNT_COLUMN_CURRENCY_ID + " INT NOT NULL, " +
-            ACCOUNT_COLUMN_CREATE_DATE + " DATE NOT NULL, " +
             "FOREIGN KEY (" + ACCOUNT_COLUMN_TYPE_ID + ")" +
                     " REFERENCES " + TABLE_ACCOUNT_TYPE + "(" + ACCOUNT_TYPE_COLUMN_ID + ")," +
             "FOREIGN KEY (" + ACCOUNT_COLUMN_CURRENCY_ID + ")" +
@@ -148,12 +153,6 @@ public class DBConst {
             " VALUES ('CAD'),('USD'),('EUR');";
 
 
-    public static String POPULATE_CATEGORY_TABLE =
-            "INSERT INTO " + TABLE_CATEGORY +
-            "(" + CATEGORY_COLUMN_NAME + ", " +
-            CATEGORY_COLUMN_LIMIT + ")" + " VALUES " +
-            " ('Food',400), ('Rent',1200), ('Utilities',325);";
-
     public static String POPULATE_ACCOUNT_TYPE_TABLE =
             "INSERT INTO " + TABLE_ACCOUNT_TYPE +
             "(" + ACCOUNT_TYPE_COLUMN_NAME + ")" +
@@ -177,14 +176,4 @@ public class DBConst {
             "(NOW(),'100','Tax Refunded',1);";
 
 
-    public static String POPULATE_ACCOUNT_TABLE =
-            "INSERT INTO " + TABLE_ACCOUNT +
-            "(" + ACCOUNT_COLUMN_BALANCE + ", " +
-            ACCOUNT_COLUMN_NAME + ", " +
-            ACCOUNT_COLUMN_CREATE_DATE + ", " +
-            ACCOUNT_COLUMN_TYPE_ID + ", " +
-            ACCOUNT_COLUMN_CURRENCY_ID + ")" +
-            "VALUES (20000,'Checking Account',NOW(),1,1), " +
-            "(80000,'Saving Account',NOW(),2,2), " +
-            "(175000,'Line Of Credit',NOW(),3,3);";
 }

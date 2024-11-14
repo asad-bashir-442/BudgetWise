@@ -1,18 +1,16 @@
 package com.example.budgetwise.tabs;
 
-import com.example.budgetwise.models.Account;
-import com.example.budgetwise.models.AccountType;
-import com.example.budgetwise.models.Category;
-import com.example.budgetwise.models.Currency;
-import com.example.budgetwise.tables.AccountTable;
-import com.example.budgetwise.tables.AccountTypeTable;
-import com.example.budgetwise.tables.CategoryTable;
-import com.example.budgetwise.tables.CurrencyTable;
+import com.example.budgetwise.models.*;
+import com.example.budgetwise.tables.*;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AddTransactionTab extends Tab {
@@ -26,75 +24,76 @@ public class AddTransactionTab extends Tab {
         root.setPadding(new Insets(10,10,10,10));
         root.setHgap(10);
         root.setVgap(10);
-        //Creating label and text field for the ->Goal Name Input
-        Label name = new Label("Transaction Name:");
-        TextField nameField = new TextField();
-        nameField.setPrefWidth(120);
-        root.add(name,0,0);
-        root.add(nameField,1,0);
+
 
         // Creating label and comboBox for account type
-        Label accountLabel = new Label("Account Type:");
-        ComboBox<String> accountComboBox = new ComboBox<>();
+        Label accountLabel = new Label("Account");
+        ComboBox<Account> accountComboBox = new ComboBox<>();
 
-        // create arrayList of account type names
-        ArrayList<String> accountTypeNames = new ArrayList<>();
-
-        for (AccountType accountType : AccountTypeTable.getInstance().getAllAccountTypes()){
-            accountTypeNames.add(accountType.getType());
-        }
-
-        accountComboBox.setItems(FXCollections.observableArrayList(accountTypeNames));
+        accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
+
+
+
+        // Creating label and comboBox for transaction type
+        Label transactionLabel = new Label("Transaction Type:");
+        ComboBox<TransactionType> transactionTypeComboBox = new ComboBox<>();
+
+
+        transactionTypeComboBox.setItems(FXCollections.observableArrayList(TransactionTypeTable.getInstance().getAllTransactionTypes()));
+        root.add(transactionLabel,0,2);
+        root.add(transactionTypeComboBox,1,2);
 
         // Creating label and Text Field for amount
         Label amountLabel = new Label("Amount:");
         TextField amountField = new TextField();
         amountField.setPrefWidth(120);
-        root.add(amountLabel,0,2);
-        root.add(amountField,1,2);
+        root.add(amountLabel,0,3);
+        root.add(amountField,1,3);
 
-        //Creating label and combobox for currency type
-        Label currencyLabel = new Label("Currency:");
-        ComboBox<String> currencyComboBox = new ComboBox<>();
-
-        // create arrayList of currency type names
-        ArrayList<String> currencyNames = new ArrayList<>();
-
-        for (Currency currency : CurrencyTable.getInstance().getAllCurrency()){
-            currencyNames.add(currency.getType());
-        }
-        currencyComboBox.setItems(FXCollections.observableArrayList(currencyNames));
-        root.add(currencyLabel,0,3);
-        root.add(currencyComboBox,1,3);
 
         //Cresting Label and textField for description
         Label descriptionLabel = new Label("Description");
-        TextArea textArea = new TextArea("Write your description");
+        TextArea textArea = new TextArea();
         textArea.setPrefRowCount(3);
         root.add(descriptionLabel,0,4);
         root.add(textArea,1,4);
 
-        // create arrayList for category names
-
-        ArrayList<String> categoryNames = new ArrayList<>();
-
-        for (Category categoryName : CategoryTable.getInstance().getAllCategories()){
-            categoryNames.add(categoryName.getName());
-        }
-
         // for category
         Label categoryLabel = new Label("Category");
-        ComboBox<String> categoryComboBox = new ComboBox<>();
-        categoryComboBox.setItems(FXCollections.observableArrayList(categoryNames));
+        ComboBox<Category> categoryComboBox = new ComboBox<>();
+        categoryComboBox.setItems(FXCollections.observableArrayList(CategoryTable.getInstance().getAllCategories()));
         root.add(categoryLabel,0,5);
         root.add(categoryComboBox,1,5);
+
+        Label dateLabel = new Label("Create Date");
+        DatePicker datePicker = new DatePicker();
+        root.add(dateLabel,0,6);
+        root.add(datePicker,1,6);
 
 
         //button to add transaction
         Button button = new Button("Add Transaction");
-        root.add(button,1,6);
+        root.add(button,1,7);
+
+        button.setOnAction(event -> {
+            Account account = accountComboBox.getValue();
+            TransactionType transactionType = transactionTypeComboBox.getValue();
+            double amount = Double.parseDouble(amountField.getText());
+            String description = textArea.getText();
+            Category category = categoryComboBox.getValue();
+
+            LocalDate date = datePicker.getValue();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedDate = date.format(formatter);
+
+            Transaction newTransaction = new Transaction(formattedDate, transactionType.getId(), amount,description,category.getId(),account.getId());
+            System.out.println(newTransaction);
+            TransactionTable.getInstance().createTransaction(newTransaction);
+
+        });
 
         this.setContent(root);
 
