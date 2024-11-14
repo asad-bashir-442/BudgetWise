@@ -29,9 +29,7 @@ public class CategoryTable implements CategoryDAO {
 
             while (data.next()){
                 categories.add(new Category(data.getInt(DBConst.CATEGORY_COLUMN_ID),
-                                data.getString(DBConst.CATEGORY_COLUMN_NAME),
-                                data.getDouble(DBConst.CATEGORY_COLUMN_LIMIT)));
-
+                                data.getString(DBConst.CATEGORY_COLUMN_NAME)));
 
             }
         } catch (SQLException e){

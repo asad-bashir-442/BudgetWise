@@ -1,7 +1,8 @@
 package com.example.budgetwise;
 
-import com.example.budgetwise.database.Database;
 import com.example.budgetwise.database.Const;
+import com.example.budgetwise.pages.HomePage;
+import com.example.budgetwise.pages.LoginPage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -41,14 +42,15 @@ public class MainEntry extends Application {
                 }
 
                 reader.close();
+                HomePage homePage=new HomePage();
+                homePage.show();
             } catch (IOException e){
                 e.printStackTrace();
 
             }
 
 
-            HomePage homePage=new HomePage();
-            homePage.show();
+
         }
     }
 
