@@ -8,9 +8,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 
-public class viewTransactionTable extends Tab {
+public class ViewTransactionTab extends Tab {
  public TableView tableView;
- public viewTransactionTable(){
+ public ViewTransactionTab(){
      this.setText("View Transaction Table");
      TransactionTable transactionTable =TransactionTable.getInstance();
      BorderPane root =new BorderPane();
@@ -31,7 +31,10 @@ public class viewTransactionTable extends Tab {
      //currency id
      TableColumn<Transaction,String>column5=new TableColumn<>("Currency");
      column5.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getType())));
-     tableView.getColumns().addAll(column1,column2,column3,column4,column5);
+     //Description Column
+     TableColumn<Transaction,String>column6=new TableColumn<>("Description");
+     column6.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDescription()));
+     tableView.getColumns().addAll(column1,column2,column3,column4,column5,column6);
      tableView.getItems().addAll(transactionTable.getAllTransactions());
      root.setCenter(tableView);
      this.setContent(root);

@@ -4,12 +4,10 @@ import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
 import com.example.budgetwise.tabs.AddAccountTab;
 import com.example.budgetwise.tabs.AddTransactionTab;
-import com.example.budgetwise.tabs.viewTransactionTable;
+import com.example.budgetwise.tabs.ViewTransactionTab;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class HomePage extends Stage {
 
         AddTransactionTab addTransactionTab = new AddTransactionTab();
         AddAccountTab addAccountTab = new AddAccountTab();
-        viewTransactionTable addTranscationTable = new viewTransactionTable();
+        ViewTransactionTab addTranscationTable = new ViewTransactionTab();
 
 
         tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable);
