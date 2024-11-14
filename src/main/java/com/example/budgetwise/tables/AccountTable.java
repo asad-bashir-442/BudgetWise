@@ -41,7 +41,9 @@ public class AccountTable implements AccountDAO {
             accounts.add(new Account(data.getInt(DBConst.ACCOUNT_COLUMN_ID),
                     data.getString(DBConst.ACCOUNT_COLUMN_NAME),
                     data.getDouble(DBConst.ACCOUNT_COLUMN_BALANCE),
-                    data.getString(DBConst.ACCOUNT_COLUMN_CREATE_DATE)));
+                    data.getString(DBConst.ACCOUNT_COLUMN_CREATE_DATE),
+                    data.getInt(DBConst.ACCOUNT_COLUMN_CURRENCY_ID),
+                    data.getInt(DBConst.ACCOUNT_COLUMN_TYPE_ID)));
 
 
         }
@@ -52,4 +54,27 @@ public class AccountTable implements AccountDAO {
         return accounts;
 
     }
+
+    @Override
+    public void createAccount(Account account) {
+        String query = "INSERT INTO " + DBConst.TABLE_ACCOUNT +
+        "(" + DBConst.ACCOUNT_COLUMN_BALANCE + ", " +
+        DBConst.ACCOUNT_COLUMN_NAME + ", " +
+        DBConst.ACCOUNT_COLUMN_CURRENCY_ID + ", " +
+        DBConst.ACCOUNT_COLUMN_CREATE_DATE + ", " +
+        DBConst.ACCOUNT_COLUMN_TYPE_ID + ") VALUES ('" +
+        account.getBalance() + "','" + account.getName() + "','" +
+        account.getCurrency_id() + "','" + account.getDate() + "','" +
+        account.getType_id() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }

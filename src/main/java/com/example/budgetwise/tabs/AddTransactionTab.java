@@ -1,13 +1,7 @@
 package com.example.budgetwise.tabs;
 
-import com.example.budgetwise.models.Account;
-import com.example.budgetwise.models.AccountType;
-import com.example.budgetwise.models.Category;
-import com.example.budgetwise.models.Currency;
-import com.example.budgetwise.tables.AccountTable;
-import com.example.budgetwise.tables.AccountTypeTable;
-import com.example.budgetwise.tables.CategoryTable;
-import com.example.budgetwise.tables.CurrencyTable;
+import com.example.budgetwise.models.*;
+import com.example.budgetwise.tables.*;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -34,17 +28,11 @@ public class AddTransactionTab extends Tab {
         root.add(nameField,1,0);
 
         // Creating label and comboBox for account type
-        Label accountLabel = new Label("Account Type:");
-        ComboBox<String> accountComboBox = new ComboBox<>();
+        Label accountLabel = new Label("Transaction Type:");
+        ComboBox<TransactionType> accountComboBox = new ComboBox<>();
 
-        // create arrayList of account type names
-        ArrayList<String> accountTypeNames = new ArrayList<>();
 
-        for (AccountType accountType : AccountTypeTable.getInstance().getAllAccountTypes()){
-            accountTypeNames.add(accountType.getType());
-        }
-
-        accountComboBox.setItems(FXCollections.observableArrayList(accountTypeNames));
+        accountComboBox.setItems(FXCollections.observableArrayList(TransactionTypeTable.getInstance().getAllTransactionTypes()));
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 

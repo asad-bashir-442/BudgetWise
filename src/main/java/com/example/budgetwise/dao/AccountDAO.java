@@ -6,4 +6,6 @@ import java.util.ArrayList;
 
 public interface AccountDAO {
     public ArrayList<Account> getAllAccounts();
+
+    public void createAccount(Account account);
 }
