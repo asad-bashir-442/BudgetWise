@@ -5,7 +5,6 @@ public class Category {
 
     private String name;
 
-    private double limit;
 
     public int getId() {
         return id;
@@ -23,21 +22,13 @@ public class Category {
         this.name = name;
     }
 
-    public double getLimit() {
-        return limit;
-    }
 
-    public void setLimit(double limit) {
-        this.limit = limit;
-    }
-
-    public Category(int id, String name, double limit) {
+    public Category(int id, String name) {
         this.id = id;
         this.name = name;
-        this.limit = limit;
     }
 
     public String toString(){
-        return id + " " + name + " " + limit;
+        return id + " " + name + " ";
     }
 }

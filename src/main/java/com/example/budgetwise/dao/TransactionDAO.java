@@ -8,4 +8,6 @@ public interface TransactionDAO {
 
     public ArrayList<Transaction> getAllTransactions();
 
+    public void createTransaction(Transaction transaction);
+
 }
