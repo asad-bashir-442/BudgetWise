@@ -30,10 +30,7 @@ public class ViewAccountTab extends Tab {
         //Currency id
         TableColumn<Account,String>column5=new TableColumn<>("Currency");
         column5.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getId())));
-        //Created date
-        TableColumn<Account,String>column6=new TableColumn<>("Created Date");
-        column6.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getDate())));
-        tableView.getColumns().addAll(column1,column2,column3,column4,column5,column6);
+        tableView.getColumns().addAll(column1,column2,column3,column4,column5);
         tableView.getItems().addAll(AccountTable.getInstance().getAllAccounts());
         root.setCenter(tableView);
         this.setContent(root);
