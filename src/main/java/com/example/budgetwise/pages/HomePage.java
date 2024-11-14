@@ -4,6 +4,7 @@ import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
 import com.example.budgetwise.tabs.AddAccountTab;
 import com.example.budgetwise.tabs.AddTransactionTab;
+import com.example.budgetwise.tabs.ViewAccountTab;
 import com.example.budgetwise.tabs.ViewTransactionTab;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
@@ -22,9 +23,9 @@ public class HomePage extends Stage {
         AddTransactionTab addTransactionTab = new AddTransactionTab();
         AddAccountTab addAccountTab = new AddAccountTab();
         ViewTransactionTab addTranscationTable = new ViewTransactionTab();
+        ViewAccountTab addAccountTable=new ViewAccountTab();
 
-
-        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable);
+        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,addAccountTable);
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
