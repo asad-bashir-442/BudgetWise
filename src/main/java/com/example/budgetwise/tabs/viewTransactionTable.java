@@ -12,7 +12,7 @@ public class viewTransactionTable extends Tab {
  public TableView tableView;
  public viewTransactionTable(){
      this.setText("View Transaction Table");
-     TransactionTable transactionTable =new TransactionTable();
+     TransactionTable transactionTable =TransactionTable.getInstance();
      BorderPane root =new BorderPane();
      tableView=new TableView<>();
 

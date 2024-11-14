@@ -18,7 +18,7 @@ public class TransactionTable implements TransactionDAO {
 
     private Database db = Database.getInstance();
 
-    public TransactionTable(){
+    private TransactionTable(){
 
     }
 
