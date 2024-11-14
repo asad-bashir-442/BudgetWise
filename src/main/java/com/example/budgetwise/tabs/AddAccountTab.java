@@ -62,32 +62,22 @@ public class AddAccountTab extends Tab {
         root.add(currency, 0,3);
         root.add(currencyComboBox,1,3);
 
-        Label dateLabel = new Label("Create Date");
-        DatePicker datePicker = new DatePicker();
-        root.add(dateLabel,0,4);
-        root.add(datePicker,1,4);
+
 
         Button button = new Button("Add Account");
-        root.add(button,1,6);
+        root.add(button,1,4);
 
         this.setContent(root);
 
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String accountName = nameField.getText();
-                AccountType accountType = accountComboBox.getValue();
-                double accountBalance = Double.parseDouble(amountField.getText());
-                Currency accountCurrency = currencyComboBox.getValue();
-                LocalDate date = datePicker.getValue();
+        button.setOnAction(event -> {
+            String accountName = nameField.getText();
+            AccountType accountType = accountComboBox.getValue();
+            double accountBalance = Double.parseDouble(amountField.getText());
+            Currency accountCurrency = currencyComboBox.getValue();
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String formattedDate = date.format(formatter);
-
-                Account newAccount = new Account(accountName,accountBalance,formattedDate,accountCurrency.getId(),accountType.getId());
-                System.out.println(newAccount);
-                AccountTable.getInstance().createAccount(newAccount);
-            }
+            Account newAccount = new Account(accountName,accountBalance,accountCurrency.getId(),accountType.getId());
+            System.out.println(newAccount);
+            AccountTable.getInstance().createAccount(newAccount);
         });
 
 

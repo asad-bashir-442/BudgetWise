@@ -41,9 +41,10 @@ public class AccountTable implements AccountDAO {
             accounts.add(new Account(data.getInt(DBConst.ACCOUNT_COLUMN_ID),
                     data.getString(DBConst.ACCOUNT_COLUMN_NAME),
                     data.getDouble(DBConst.ACCOUNT_COLUMN_BALANCE),
-                    data.getString(DBConst.ACCOUNT_COLUMN_CREATE_DATE),
                     data.getInt(DBConst.ACCOUNT_COLUMN_CURRENCY_ID),
                     data.getInt(DBConst.ACCOUNT_COLUMN_TYPE_ID)));
+
+
 
 
         }
@@ -61,10 +62,9 @@ public class AccountTable implements AccountDAO {
         "(" + DBConst.ACCOUNT_COLUMN_BALANCE + ", " +
         DBConst.ACCOUNT_COLUMN_NAME + ", " +
         DBConst.ACCOUNT_COLUMN_CURRENCY_ID + ", " +
-        DBConst.ACCOUNT_COLUMN_CREATE_DATE + ", " +
         DBConst.ACCOUNT_COLUMN_TYPE_ID + ") VALUES ('" +
         account.getBalance() + "','" + account.getName() + "','" +
-        account.getCurrency_id() + "','" + account.getDate() + "','" +
+        account.getCurrency_id() + "','" +
         account.getType_id() + "')";
 
         try {

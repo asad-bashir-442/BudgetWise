@@ -43,7 +43,9 @@ public class TransactionTable implements TransactionDAO {
                         data.getString(DBConst.TRANSACTION_COLUMN_DATE),
                         data.getInt(DBConst.TRANSACTION_COLUMN_TYPE_ID),
                         data.getDouble(DBConst.TRANSACTION_COLUMN_AMOUNT),
-                        data.getString(DBConst.TRANSACTION_COLUMN_DESCRIPTION)));
+                        data.getString(DBConst.TRANSACTION_COLUMN_DESCRIPTION),
+                        data.getInt(DBConst.TRANSACTION_COLUMN_CATEGORY_ID),
+                        data.getInt(DBConst.TRANSACTION_COLUMN_ACCOUNT_ID)));
 
 
             }
@@ -54,4 +56,30 @@ public class TransactionTable implements TransactionDAO {
         return transactions;
 
     }
+
+    @Override
+    public void createTransaction(Transaction transaction) {
+
+        String query = "INSERT INTO " + DBConst.TABLE_TRANSACTION +
+            "(" + DBConst.TRANSACTION_COLUMN_TYPE_ID + ", " +
+                DBConst.TRANSACTION_COLUMN_AMOUNT + ", " +
+                DBConst.TRANSACTION_COLUMN_DESCRIPTION + ", " +
+                DBConst.TRANSACTION_COLUMN_CATEGORY_ID + ", " +
+                DBConst.TRANSACTION_COLUMN_ACCOUNT_ID + ", " +
+                DBConst.TRANSACTION_COLUMN_DATE + ") VALUES ('" +
+                transaction.getType() + "','" + transaction.getAmount() + "','" +
+                transaction.getDescription() + "','" + transaction.getCategory_id() + "','" +
+                transaction.getAccount_id() + "','" + transaction.getDate() + "')";
+
+
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
