@@ -26,11 +26,6 @@ public class Database {
             createTable(DBConst.TABLE_TRANSACTION_TYPE,DBConst.CREATE_TABLE_TRANSACTION_TYPES,connection);
             createTable(DBConst.TABLE_TRANSACTION,DBConst.CREATE_TABLE_TRANSACTIONS,connection);
 
-            /**
-             * This method populates the tables with mock data
-             * should only be run once. Uncomment then Comment again.
-             */
-            //populateMockData();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,21 +52,6 @@ public class Database {
         }
     }
 
-    public void populateMockData(){
-
-        try{
-            connection.createStatement().execute(DBConst.POPULATE_TRANSACTION_TYPE_TABLE);
-            connection.createStatement().execute(DBConst.POPULATE_CURRENCY_TABLE);
-            connection.createStatement().execute(DBConst.POPULATE_ACCOUNT_TYPE_TABLE);
-            connection.createStatement().execute(DBConst.POPULATE_TRANSACTION_TABLE);
-
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public Connection getConnection() {
         return connection;

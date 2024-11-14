@@ -144,36 +144,4 @@ public class DBConst {
                     ");";
 
 
-    /**
-     * MockData insertion tables
-     */
-    public static String POPULATE_CURRENCY_TABLE =
-            "INSERT INTO " + TABLE_CURRENCY +
-            "(" + CURRENCY_COLUMN_NAME + ")" +
-            " VALUES ('CAD'),('USD'),('EUR');";
-
-
-    public static String POPULATE_ACCOUNT_TYPE_TABLE =
-            "INSERT INTO " + TABLE_ACCOUNT_TYPE +
-            "(" + ACCOUNT_TYPE_COLUMN_NAME + ")" +
-            " VALUES ('Checking'),('Savings'),('Credit');";
-
-    public static String POPULATE_TRANSACTION_TYPE_TABLE =
-            "INSERT INTO " + TABLE_TRANSACTION_TYPE +
-            "(" + TRANSACTION_TYPE_COLUMN_NAME + ")" +
-            " VALUES ('Debit'),('Credit');";
-
-
-    public static String POPULATE_TRANSACTION_TABLE =
-            "INSERT INTO " + TABLE_TRANSACTION +
-            "(" + TRANSACTION_COLUMN_DATE + ", " +
-            TRANSACTION_COLUMN_AMOUNT + "," +
-            TRANSACTION_COLUMN_DESCRIPTION + ", " +
-            TRANSACTION_COLUMN_TYPE_ID + ")" +
-            " VALUES (NOW(),'100','Grocery Shopping Walmart',2), " +
-            "(NOW(),'800','Car Repair',2), " +
-            "(NOW(),'2000','Paid',1), " +
-            "(NOW(),'100','Tax Refunded',1);";
-
-
 }
