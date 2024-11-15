@@ -1,6 +1,5 @@
-package com.example.budgetwise;
+package com.example.budgetwise.pages;
 
-import com.example.budgetwise.database.newConst;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import static com.example.budgetwise.database.newConst.*;
+import static com.example.budgetwise.database.Const.*;
 
 public class LoginPage extends Stage {
     public LoginPage(){
@@ -45,7 +44,7 @@ public class LoginPage extends Stage {
             DB_USER=userNameTextField.getText();
             DB_LOCATION=serverTextField.getText();
 
-            if(validCredentials(DB_NAME,DB_PASS,DB_LOCATION,DB_USER)){
+            if(validCredentials()){
                 try {
                     saveUserInfo(DB_NAME, DB_PASS, DB_LOCATION, DB_USER);
                     HomePage homePage=new HomePage();
@@ -88,7 +87,7 @@ public class LoginPage extends Stage {
     }
     public void saveUserInfo(String db_name, String db_pass ,String dblocation, String dbuser) throws IOException {
         String info="info.txt";
-        FileWriter myWriter=new FileWriter(info);
+        FileWriter myWriter = new FileWriter(info);
         myWriter.write(db_name+"\n");
         myWriter.write(db_pass+"\n");
         myWriter.write(dblocation+"\n");
@@ -96,7 +95,7 @@ public class LoginPage extends Stage {
 
         myWriter.close();
     }
-    public boolean validCredentials(String dbName, String dbpass, String dblocation, String dbuser){
+    public boolean validCredentials(){
         Connection connection;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

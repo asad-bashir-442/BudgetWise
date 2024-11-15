@@ -11,9 +11,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class HomePage extends Stage {
+public class HomePage2 extends Stage {
     //no content just use it to show here is the home page
-    public HomePage(){
+    public HomePage2(){
 
         BorderPane borderPane=new BorderPane();
         //add tab in the homepage
