@@ -15,7 +15,7 @@ public class MainEntry extends Application {
         LoginPage loginPage=new LoginPage();
         loginPage.show();
         }else{
-
+        
             HomePage homePage=new HomePage();
             homePage.show();
         }
