@@ -1,18 +1,15 @@
 package com.example.budgetwise;
 
-import com.example.budgetwise.tabs.AccountsTab;
-import com.example.budgetwise.tabs.GoalsTab;
-import com.example.budgetwise.tabs.TransactionsTab;
+import com.example.budgetwise.TABS.AccountsTab;
+import com.example.budgetwise.TABS.GoalsTab;
+import com.example.budgetwise.TABS.TransactionsTab;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.Stack;
 
 public class HomePage extends Stage {
     //no content just use it to show here is the home page

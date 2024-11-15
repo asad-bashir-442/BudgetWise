@@ -1,21 +1,19 @@
-package com.example.budgetwise.tabs;
+package com.example.budgetwise.TABS;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 
-public class AccountsTab extends Tab {
-    public AccountsTab(){
-        this.setText("Accounts");
-        Button addNew=new Button("Add Account +");
+public class GoalsTab extends Tab {
+    public GoalsTab(){
+        this.setText("Goals");
+        Button addNew=new Button("Add Goal +");
         GridPane root=new GridPane();
         root.add(addNew,0,1);
         this.setContent(root);
-
         //set event on button
         addNew.setOnAction(e->{
 
         });
-
     }
 }
