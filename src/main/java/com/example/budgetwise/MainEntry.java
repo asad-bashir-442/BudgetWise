@@ -4,6 +4,7 @@ import com.example.budgetwise.database.Const;
 import com.example.budgetwise.pages.HomePage;
 import com.example.budgetwise.pages.LoginPage;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -20,6 +21,9 @@ public class MainEntry extends Application {
         if(!file.exists()){
 
         LoginPage loginPage = new LoginPage();
+        Image icon=new Image(getClass().getResource("/logo1.png").toExternalForm());
+        loginPage.getIcons().add(icon);
+
         loginPage.show();
         }else{
 
@@ -48,6 +52,8 @@ public class MainEntry extends Application {
 
                 reader.close();
                 HomePage homePage=new HomePage();
+                Image icon=new Image(getClass().getResource("/logo1.png").toExternalForm());
+                homePage.getIcons().add(icon);
                 homePage.show();
             } catch (IOException e){
                 e.printStackTrace();

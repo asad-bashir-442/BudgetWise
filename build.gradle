@@ -35,11 +35,11 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.example.budgetwise'
-    mainClass = 'com.example.budgetwise.HelloApplication'
+    mainClass = 'com.example.budgetwise.MainEntry'
 }
 
 javafx {
-    version = '20.0.1'
+    version = '20.0.2'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
