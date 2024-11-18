@@ -57,7 +57,7 @@ public class LoginPage extends Stage {
             }
         });
 
-        Image logo=new Image(getClass().getResource("logo1.png").toString());
+        Image logo=new Image(getClass().getResource("/logo1.png").toString());
         ImageView logoView=new ImageView(logo);
         logoView.setFitHeight(200);
         logoView.setFitWidth(200);

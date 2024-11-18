@@ -4,6 +4,7 @@ import com.example.budgetwise.database.Const;
 import com.example.budgetwise.pages.HomePage;
 import com.example.budgetwise.pages.LoginPage;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -14,14 +15,22 @@ import java.io.IOException;
 public class MainEntry extends Application {
     public final String FILE="info.txt";
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         File file = new File(FILE);
         if(!file.exists()){
 
         LoginPage loginPage = new LoginPage();
+        Image icon=new Image(getClass().getResource("/logo1.png").toExternalForm());
+        loginPage.getIcons().add(icon);
+
         loginPage.show();
         }else{
+
+//
+//            HomePage homePage=new HomePage();
+//            homePage.show();
+
 
             try{
                 BufferedReader reader = new BufferedReader(new FileReader("info.txt"));
@@ -43,11 +52,14 @@ public class MainEntry extends Application {
 
                 reader.close();
                 HomePage homePage=new HomePage();
+                Image icon=new Image(getClass().getResource("/logo1.png").toExternalForm());
+                homePage.getIcons().add(icon);
                 homePage.show();
             } catch (IOException e){
                 e.printStackTrace();
 
             }
+
 
 
 
