@@ -50,4 +50,8 @@ public class AccountTypeTable implements AccountTypeDAO {
         return accountTypes;
 
     }
+
+//    public int getId(){
+//
+//    }
 }

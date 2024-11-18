@@ -80,6 +80,32 @@ public class TransactionTable implements TransactionDAO {
             e.printStackTrace();
         }
     }
+    public ArrayList<Transaction> searchTransaction(int accountId){
+
+        String query=" SELECT * FROM "+DBConst.TABLE_TRANSACTION+" WHERE "+DBConst.TRANSACTION_COLUMN_ACCOUNT_ID+" = "+accountId;
+        transactions=new ArrayList<>();
+
+        try{
+//            db.getConnection().createStatement().executeQuery(query);
+//            System.out.println("find records");
+            Statement getItems=db.getConnection().createStatement();
+            ResultSet data=getItems.executeQuery(query);
+
+            while(data.next()){
+                transactions.add(new Transaction(data.getInt(DBConst.TRANSACTION_COLUMN_ID),
+                        data.getString(DBConst.TRANSACTION_COLUMN_DATE),
+                        data.getInt(DBConst.TRANSACTION_COLUMN_TYPE_ID),
+                        data.getDouble(DBConst.TRANSACTION_COLUMN_AMOUNT),
+                        data.getString(DBConst.TRANSACTION_COLUMN_DESCRIPTION),
+                        data.getInt(DBConst.TRANSACTION_COLUMN_CATEGORY_ID),
+                        data.getInt(DBConst.TRANSACTION_COLUMN_ACCOUNT_ID)));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return transactions;
+    }
+
 
 
 }

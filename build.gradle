@@ -35,7 +35,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.example.budgetwise'
-    mainClass = 'com.example.budgetwise.HelloApplication'
+    mainClass = 'com.example.budgetwise.MainEntry'
 }
 
 javafx {
