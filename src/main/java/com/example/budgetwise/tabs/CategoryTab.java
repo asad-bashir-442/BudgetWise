@@ -27,6 +27,8 @@ public class CategoryTab extends Tab {
         Button button = new Button("Add category");
         root.add(button,1,2);
 
+        this.setContent(root);
+
     }
 
 }
