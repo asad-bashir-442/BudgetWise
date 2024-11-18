@@ -39,6 +39,18 @@ public class CategoryTable implements CategoryDAO {
         return categories;
     }
 
+    @Override
+    public void addCategory(Category category) {
+        String query = "INSERT INTO" + DBConst.TABLE_CATEGORY + " (" + DBConst.CATEGORY_COLUMN_NAME + ") VALUES ('" + category.getName() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static CategoryTable getInstance(){
         if (instance == null){
             instance = new CategoryTable();
@@ -46,3 +58,4 @@ public class CategoryTable implements CategoryDAO {
         return instance;
     }
 }
+

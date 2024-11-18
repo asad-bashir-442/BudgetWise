@@ -1,5 +1,7 @@
 package com.example.budgetwise.tabs;
 
+import com.example.budgetwise.models.Category;
+import com.example.budgetwise.tables.CategoryTable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +12,7 @@ import javafx.scene.layout.GridPane;
 public class CategoryTab extends Tab {
 
     public CategoryTab(){
-        this.setText("Category ");
+        this.setText(" Add Category ");
 
         GridPane root = new GridPane();
 
@@ -18,7 +20,7 @@ public class CategoryTab extends Tab {
         root.setVgap(10);
         root.setHgap(10);
 
-        Label nameLabel = new Label("Account Name:");
+        Label nameLabel = new Label("Category Name:");
         TextField nameField = new TextField();
         nameField.setPrefWidth(150);
         root.add(nameLabel,0,0);
@@ -28,7 +30,12 @@ public class CategoryTab extends Tab {
         root.add(button,1,2);
 
         this.setContent(root);
-
+        button.setOnAction(event ->{
+            String categoryName = nameField.getText();
+            Category newCategory = new Category(0, categoryName);
+            CategoryTable.getInstance().addCategory(newCategory);
+            System.out.println("Added new Category: " + newCategory);
+        });
     }
 
 }
