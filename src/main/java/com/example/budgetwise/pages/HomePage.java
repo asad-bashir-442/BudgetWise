@@ -7,6 +7,9 @@ import com.example.budgetwise.tabs.AddTransactionTab;
 import com.example.budgetwise.tabs.ViewAccountTab;
 import com.example.budgetwise.tabs.ViewTransactionTab;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -31,8 +34,16 @@ public class HomePage extends Stage {
 
 
 
-        borderPane.setTop(tabPane);
-
+        borderPane.setCenter(tabPane);
+        //set menu bar
+        MenuBar menuBar=new MenuBar();
+        Menu fileMenu=new Menu("File");
+        Menu creditsMenu=new Menu("Credits");
+        MenuItem exit=new MenuItem("Exit");
+        exit.setOnAction(e->System.exit(0));
+        fileMenu.getItems().add(exit);
+        menuBar.getMenus().addAll(fileMenu,creditsMenu);
+        borderPane.setTop(menuBar);
 
         ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
