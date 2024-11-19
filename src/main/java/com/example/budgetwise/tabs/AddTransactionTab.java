@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +32,7 @@ public class AddTransactionTab extends Tab {
         ComboBox<Account> accountComboBox = new ComboBox<>();
 
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
+        accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 
@@ -42,6 +44,7 @@ public class AddTransactionTab extends Tab {
 
 
         transactionTypeComboBox.setItems(FXCollections.observableArrayList(TransactionTypeTable.getInstance().getAllTransactionTypes()));
+        transactionTypeComboBox.setValue(TransactionTypeTable.getInstance().getAllTransactionTypes().get(0));
         root.add(transactionLabel,0,2);
         root.add(transactionTypeComboBox,1,2);
 
@@ -64,6 +67,7 @@ public class AddTransactionTab extends Tab {
         Label categoryLabel = new Label("Category");
         ComboBox<Category> categoryComboBox = new ComboBox<>();
         categoryComboBox.setItems(FXCollections.observableArrayList(CategoryTable.getInstance().getAllCategories()));
+        categoryComboBox.setValue(CategoryTable.getInstance().getAllCategories().get(0));
         root.add(categoryLabel,0,5);
         root.add(categoryComboBox,1,5);
 

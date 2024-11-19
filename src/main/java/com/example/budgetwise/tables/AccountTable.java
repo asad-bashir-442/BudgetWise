@@ -76,5 +76,24 @@ public class AccountTable implements AccountDAO {
 
     }
 
+    @Override
+    public void updateAccount(Account account) {
+        String query = "UPDATE " + DBConst.TABLE_ACCOUNT + " SET " +
+                DBConst.ACCOUNT_COLUMN_NAME + " = " + "'" +account.getName() +"'"+ "," +
+                DBConst.ACCOUNT_COLUMN_TYPE_ID + " = " +  account.getType_id() + "," +
+                DBConst.ACCOUNT_COLUMN_CURRENCY_ID + " = " + account.getCurrency_id() +
+                " WHERE " + DBConst.ACCOUNT_COLUMN_ID + " = " + account.getId();
+
+        try{
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Updated record");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 }

@@ -8,4 +8,6 @@ public interface AccountDAO {
     public ArrayList<Account> getAllAccounts();
 
     public void createAccount(Account account);
+
+    public void updateAccount(Account account);
 }
