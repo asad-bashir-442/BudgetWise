@@ -41,7 +41,7 @@ public class CategoryTable implements CategoryDAO {
 
     @Override
     public void addCategory(Category category) {
-        String query = "INSERT INTO" + DBConst.TABLE_CATEGORY + " (" + DBConst.CATEGORY_COLUMN_NAME + ") VALUES ('" + category.getName() + "')";
+        String query = "INSERT INTO " + DBConst.TABLE_CATEGORY + " (" + DBConst.CATEGORY_COLUMN_NAME + ") VALUES ('" + category.getName() + "')";
 
         try {
             db.getConnection().createStatement().execute(query);
@@ -50,6 +50,8 @@ public class CategoryTable implements CategoryDAO {
             e.printStackTrace();
         }
     }
+
+
 
     public static CategoryTable getInstance(){
         if (instance == null){
