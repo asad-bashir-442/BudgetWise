@@ -1,32 +1,33 @@
 package com.example.budgetwise.tabs;
 
 import com.example.budgetwise.models.Account;
-import com.example.budgetwise.models.AccountType;
+import com.example.budgetwise.models.Category;
 import com.example.budgetwise.models.Transaction;
 import com.example.budgetwise.tables.AccountTable;
-import com.example.budgetwise.tables.AccountTypeTable;
+
+import com.example.budgetwise.tables.CategoryTable;
 import com.example.budgetwise.tables.TransactionTable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.chart.Chart;
+
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
+
 
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
+    private PieChart chart;
 
     private Account chosenAccount;
-    private PieChart chart;
+
     public ViewAccountsTab(){
         this.setText("View Accounts");
         BorderPane root=new BorderPane();
@@ -44,7 +45,7 @@ public class ViewAccountsTab extends Tab {
         topPanel.add(account,0,0);
         topPanel.add(accountComboBox,1,0);
 
-        Button refresh=new Button("Refresh");
+        Button refresh=new Button("Refresh chart");
         refresh.setOnAction(event -> generateChart());
         topPanel.add(refresh,2,0);
 
@@ -84,7 +85,8 @@ public class ViewAccountsTab extends Tab {
                     tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
         }
         );
-
+        tableView.setPrefHeight(250);
+        tableView.setPrefWidth(800);
         topPanel.add(tableView,0,2,2,1);
         chart=new PieChart();
         chart.setTitle("Transactions Breakdown");
@@ -101,6 +103,23 @@ public class ViewAccountsTab extends Tab {
     }
 
     public void generateChart() {
+        TransactionTable transactionTable=TransactionTable.getInstance();
+        CategoryTable categoryTable=CategoryTable.getInstance();
+
+        //get all types of categories
+        ArrayList<Category> categories=categoryTable.getAllCategories();
+        ArrayList<PieChart.Data> data=new ArrayList<>();
+        //have to write a method in transaction table
+        for(Category category:categories){
+            double amount=transactionTable.getCategoryAmount(category.getId());
+            if(amount>0){
+                data.add(new PieChart.Data(category.getName(),amount));
+
+            }
+        }
+        ObservableList<PieChart.Data> chartData=FXCollections.observableArrayList(data);
+        chart.setData(chartData);
+
 
     }
 

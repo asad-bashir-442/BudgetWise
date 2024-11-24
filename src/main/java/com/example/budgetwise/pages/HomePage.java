@@ -64,6 +64,6 @@ public class HomePage extends Stage {
         }
 
         super.setTitle("homepage");
-        super.setScene(new Scene(borderPane,800,500));
+        super.setScene(new Scene(borderPane,800,850));
     }
 }
