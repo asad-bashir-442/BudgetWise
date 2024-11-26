@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
     private PieChart chart;
+    public TableView tableView;
 
     private Account chosenAccount;
 
@@ -57,7 +58,7 @@ public class ViewAccountsTab extends Tab {
 
         //create a table to show transactions that associate with account chosen in the combbox
         TransactionTable transactionTable =TransactionTable.getInstance();
-        TableView tableView=new TableView<>();
+        tableView=new TableView<>();
 //        TableColumn<Transaction, String> column1=new TableColumn<>("Transaction Id");
 //        column1.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getId())));
         // Date column
@@ -77,12 +78,16 @@ public class ViewAccountsTab extends Tab {
         column6.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDescription()));
         tableView.getColumns().addAll(column2,column3,column4,column5,column6);
         tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
+
         accountComboBox.setOnAction(e->{
                     chosenAccount = accountComboBox.getSelectionModel().getSelectedItem();
                     System.out.println(chosenAccount);
+                    refreshTable();
 //                    int accountId=chosenAccount.getId();
                     tableView.getItems().clear();
                     tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
+            generateChart();
+
         }
         );
         tableView.setPrefHeight(250);
@@ -121,6 +126,12 @@ public class ViewAccountsTab extends Tab {
         chart.setData(chartData);
 
 
+    }
+    public void refreshTable(){
+        TransactionTable table=TransactionTable.getInstance();
+        ArrayList<Transaction> transactions=table.searchTransaction(chosenAccount.getId());
+        tableView.getItems().clear();
+        tableView.getItems().addAll(transactions);
     }
 
 
