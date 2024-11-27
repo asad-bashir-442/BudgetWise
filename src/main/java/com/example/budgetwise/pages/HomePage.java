@@ -2,10 +2,7 @@ package com.example.budgetwise.pages;
 
 import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
-import com.example.budgetwise.tabs.AddAccountTab;
-import com.example.budgetwise.tabs.AddTransactionTab;
-import com.example.budgetwise.tabs.ViewAccountTab;
-import com.example.budgetwise.tabs.ViewTransactionTab;
+import com.example.budgetwise.tabs.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -27,8 +24,9 @@ public class HomePage extends Stage {
         AddAccountTab addAccountTab = new AddAccountTab();
         ViewTransactionTab addTranscationTable = new ViewTransactionTab();
         ViewAccountTab addAccountTable=new ViewAccountTab();
+        ViewAccountsTab viewAccountsTab=new ViewAccountsTab();
 
-        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,addAccountTable);
+        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,addAccountTable,viewAccountsTab);
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
@@ -77,6 +75,6 @@ public class HomePage extends Stage {
         }
 
         super.setTitle("homepage");
-        super.setScene(new Scene(borderPane,800,500));
+        super.setScene(new Scene(borderPane,800,850));
     }
 }
