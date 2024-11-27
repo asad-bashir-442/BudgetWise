@@ -34,6 +34,14 @@
     -fx-padding: 10px;
 }
 
+.textarea-style{
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
 
 
 
@@ -50,7 +58,7 @@
 /* Button hover effect */
 .button-style:hover {
     -fx-background-color: #1b2141;
-    -fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1); 
+    -fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);
 }
 
 
