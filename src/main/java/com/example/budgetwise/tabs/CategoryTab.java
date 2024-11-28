@@ -19,22 +19,28 @@ public class CategoryTab extends Tab {
         root.setPadding(new Insets(10, 10, 10, 10));
         root.setVgap(10);
         root.setHgap(10);
-        root.getStyleClass().add("category-tab"); // Apply custom style class
+        root.getStyleClass().add("tab-background");
+
+
 
         // Create and add label
         Label nameLabel = new Label("Category Name:");
-        nameLabel.getStyleClass().add("category-label");
+        nameLabel.getStyleClass().add("label-style");
+
         root.add(nameLabel, 0, 0);
 
         // Create and add text field
         TextField nameField = new TextField();
+        nameField.getStyleClass().add("textfield-style");
+
         nameField.setPrefWidth(150);
-        nameField.getStyleClass().add("category-textfield");
         root.add(nameField, 1, 0);
 
         // Create and add button
         Button button = new Button("Add category");
-        button.getStyleClass().add("category-button");
+        button.getStyleClass().add("button-style");
+
+
         root.add(button, 1, 2);
 
         // Attach CSS file to the GridPane
