@@ -3,8 +3,6 @@ package com.example.budgetwise.tabs;
 import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -13,7 +11,6 @@ import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class AddTransactionTab extends Tab {
 
@@ -120,21 +117,36 @@ public class AddTransactionTab extends Tab {
 
 
 
-            if(amountField.getText().length() >=1 && textArea.getText().length() >=1 && date != null){
+            if(amountField.getText().length() >=1 && textArea.getText().length() >=1 && date != null && isNumeric(amountField.getText())){
                 double amount = Double.parseDouble(amountField.getText());
                 String formattedDate = date.format(formatter);
                 Transaction newTransaction = new Transaction(formattedDate, transactionType.getId(), amount,description,category.getId(),account.getId());
                 TransactionTable.getInstance().createTransaction(newTransaction);
 
+                error.setFill(Color.rgb(255,0,0,0));
                 success.setFill(Color.rgb(0,255,0,1));
 
+                ViewAccountsTab.getInstance().refresh();
+
             }else {
+                success.setFill(Color.rgb(0,255,0,0));
                 error.setFill(Color.rgb(255,0,0,1));
             }
 
         });
 
         this.setContent(root);
+
+    }
+
+    private boolean isNumeric(String str){
+        try{
+            Double.parseDouble(str);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
+
 
     }
 

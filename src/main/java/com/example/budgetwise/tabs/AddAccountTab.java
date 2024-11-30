@@ -5,20 +5,13 @@ import com.example.budgetwise.models.AccountType;
 import com.example.budgetwise.models.Currency;
 import com.example.budgetwise.tables.AccountTable;
 import com.example.budgetwise.tables.AccountTypeTable;
-import com.example.budgetwise.tables.CategoryTable;
 import com.example.budgetwise.tables.CurrencyTable;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class AddAccountTab extends Tab {
 
@@ -104,6 +97,8 @@ public class AddAccountTab extends Tab {
                 AccountTable.getInstance().createAccount(newAccount);
                 error.setFill(Color.rgb(255,0,0,0));
                 success.setFill(Color.rgb(0,255,0,1));
+
+                ViewAccountsTab.getInstance().refresh();
             }else{
                 error.setFill(Color.rgb(255,0,0,1));
                 success.setFill(Color.rgb(0,255,0,0));

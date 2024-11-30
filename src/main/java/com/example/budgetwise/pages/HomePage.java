@@ -27,7 +27,7 @@ public class HomePage extends Stage {
        // ViewAccountTab viewAccountTable=new ViewAccountTab();
         EditAccountTab editAccountTab = new EditAccountTab();
        // ViewAccountTab addAccountTable=new ViewAccountTab();
-        ViewAccountsTab viewAccountsTab=new ViewAccountsTab();
+        ViewAccountsTab viewAccountsTab= ViewAccountsTab.getInstance();
         tabPane.getTabs().addAll(viewAccountsTab,addAccountTab,addTransactionTab,editAccountTab);
 
 

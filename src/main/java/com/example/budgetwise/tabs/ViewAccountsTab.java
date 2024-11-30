@@ -26,11 +26,13 @@ import java.util.ArrayList;
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
     private PieChart chart = new PieChart();;
-    public TableView tableView = new TableView<>();;
+    public TableView tableView = new TableView<>();
+
+    private static ViewAccountsTab instance;
 
     private Account chosenAccount;
 
-    public ViewAccountsTab(){
+    private ViewAccountsTab(){
         this.setText("Accounts");
         BorderPane root=new BorderPane();
         GridPane topPanel=new GridPane();
@@ -57,17 +59,6 @@ public class ViewAccountsTab extends Tab {
         topPanel.add(account,0,0);
         topPanel.add(accountComboBox,1,0);
 
-
-        //get chosen account id
-       // int accountId= Integer.parseInt(accountComboBox.getId());  wrong way to get account id
-//        AccountType chosenAccount=accountComboBox.getSelectionModel().getSelectedItem();
-//
-//        int accountId=chosenAccount.getId();
-
-        //create a table to show transactions that associate with account chosen in the combbox
-
-//        TableColumn<Transaction, String> column1=new TableColumn<>("Transaction Id");
-//        column1.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getId())));
         // Date column
         TableColumn<Transaction, String>column2 =new TableColumn<>("Date");
         column2.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDate()));
@@ -87,12 +78,11 @@ public class ViewAccountsTab extends Tab {
         tableView.getColumns().addAll(column2,column3,column4,column5,column6);
 
         accountComboBox.setOnAction(e->{
-                    chosenAccount = accountComboBox.getSelectionModel().getSelectedItem();
-                    System.out.println(chosenAccount);
-                    refreshTable();
-//                    int accountId=chosenAccount.getId();
-                    tableView.getItems().clear();
-                    tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
+
+            chosenAccount = accountComboBox.getSelectionModel().getSelectedItem();
+            System.out.println(chosenAccount);
+            refreshTable();
+
             generateChart();
 
         }
@@ -108,13 +98,11 @@ public class ViewAccountsTab extends Tab {
         root.setBottom(bottomPanel);
 
 
-
-
      this.setContent(root);
 
     }
 
-    public void generateChart() {
+    private void generateChart() {
         TransactionTable transactionTable=TransactionTable.getInstance();
         CategoryTable categoryTable=CategoryTable.getInstance();
 
@@ -134,12 +122,27 @@ public class ViewAccountsTab extends Tab {
 
 
     }
-    public void refreshTable(){
+    private void refreshTable(){
         TransactionTable table=TransactionTable.getInstance();
         ArrayList<Transaction> transactions=table.searchTransaction(chosenAccount.getId());
         tableView.getItems().clear();
         tableView.getItems().addAll(transactions);
+
+
     }
 
+    public static ViewAccountsTab getInstance() {
+        if(instance == null){
+            instance = new ViewAccountsTab();
+        }
+        return instance;
+    }
 
+    public void refresh(){
+        refreshTable();
+        generateChart();
+
+        accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
+        accountComboBox.getSelectionModel().selectFirst();
+    }
 }
