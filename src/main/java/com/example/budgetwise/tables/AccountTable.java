@@ -95,5 +95,22 @@ public class AccountTable implements AccountDAO {
 
     }
 
+    @Override
+    public void deleteAccount(Account account) {
+
+        TransactionTable.getInstance().deleteTransactionByAccount(account);
+
+        String query = "DELETE FROM " + DBConst.TABLE_ACCOUNT + " WHERE " +
+                    DBConst.ACCOUNT_COLUMN_ID + " = " + account.getId();
+
+        try{
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted record");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

@@ -28,6 +28,7 @@ public class EditAccountTab extends Tab {
         ComboBox<Account> accountComboBox = new ComboBox<>();
 
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
+        accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 
@@ -40,6 +41,7 @@ public class EditAccountTab extends Tab {
 
         Label transactionTypeLabel = new Label("Account Type:");
         ComboBox<AccountType> accountTypeComboBox = new ComboBox<>();
+        accountTypeComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
 
 
         accountTypeComboBox.setItems(FXCollections.observableArrayList(AccountTypeTable.getInstance().getAllAccountTypes()));
@@ -49,43 +51,45 @@ public class EditAccountTab extends Tab {
         Label currency = new Label("New Currency:");
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
+        currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
         root.add(currency, 0,4);
         root.add(currencyComboBox,1,4);
 
-        Button button = new Button("New Edit Account");
-        root.add(button,1,5);
+        Button editBtn = new Button("Edit Account");
+        root.add(editBtn,1,5);
+
+        Button deleteBtn  = new Button("Delete Account");
+        root.add(deleteBtn,2,5);
 
 
         this.setContent(root);
 
 
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Account selectedAccount = accountComboBox.getValue();
-                Currency selectedCurrency = currencyComboBox.getValue();
-                //TransactionType selectedTransactionType = transactionTypeComboBox.getValue();
-                AccountType selectedAccountType = accountTypeComboBox.getValue();
-                String selectedName = nameField.getText();
+        deleteBtn.setOnAction(event -> {
+            Account selectedAccount = accountComboBox.getValue();
 
-//                System.out.println(selectedName);
-//                System.out.println(selectedTransactionType);
-//                System.out.println(selectedCurrency);
+            AccountTable.getInstance().deleteAccount(selectedAccount);
 
+        });
 
-                System.out.println(selectedAccount);
-                selectedAccount.setName(selectedName);
-                selectedAccount.setCurrency_id(selectedCurrency.getId());
-                selectedAccount.setType_id(selectedAccountType.getId());
+        editBtn.setOnAction(event -> {
+            Account selectedAccount = accountComboBox.getValue();
+            Currency selectedCurrency = currencyComboBox.getValue();
+            AccountType selectedAccountType = accountTypeComboBox.getValue();
+            String selectedName = nameField.getText();
 
+            System.out.println(selectedAccount);
+            selectedAccount.setName(selectedName);
+            selectedAccount.setCurrency_id(selectedCurrency.getId());
+            selectedAccount.setType_id(selectedAccountType.getId());
 
 
 
-                System.out.println(selectedAccount);
 
-                AccountTable.getInstance().updateAccount(selectedAccount);
-            }
+            System.out.println(selectedAccount);
+
+            AccountTable.getInstance().updateAccount(selectedAccount);
         });
 
 

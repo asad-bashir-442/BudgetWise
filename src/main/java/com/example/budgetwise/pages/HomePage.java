@@ -23,10 +23,11 @@ public class HomePage extends Stage {
         AddTransactionTab addTransactionTab = new AddTransactionTab();
         AddAccountTab addAccountTab = new AddAccountTab();
         ViewTransactionTab addTranscationTable = new ViewTransactionTab();
-        ViewAccountTab addAccountTable=new ViewAccountTab();
+        ViewAccountTab viewAccountTable=new ViewAccountTab();
         EditAccountTab editAccountTab = new EditAccountTab();
 
-        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,addAccountTable,editAccountTab);
+        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,viewAccountTable,editAccountTab);
+
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 

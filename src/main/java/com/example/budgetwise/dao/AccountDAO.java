@@ -10,4 +10,6 @@ public interface AccountDAO {
     public void createAccount(Account account);
 
     public void updateAccount(Account account);
+
+    public void deleteAccount(Account account);
 }

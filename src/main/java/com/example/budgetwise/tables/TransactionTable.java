@@ -3,6 +3,7 @@ package com.example.budgetwise.tables;
 import com.example.budgetwise.dao.TransactionDAO;
 import com.example.budgetwise.database.DBConst;
 import com.example.budgetwise.database.Database;
+import com.example.budgetwise.models.Account;
 import com.example.budgetwise.models.Transaction;
 
 import java.sql.ResultSet;
@@ -79,6 +80,23 @@ public class TransactionTable implements TransactionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void deleteTransactionByAccount(Account account) {
+        ArrayList<Transaction> transactions = getAllTransactions();
+
+        String query = " DELETE FROM " + DBConst.TABLE_TRANSACTION + " WHERE " +
+                DBConst.TRANSACTION_COLUMN_ACCOUNT_ID + " = " + account.getId();
+
+        try{
+            db.getConnection().createStatement().execute(query);
+            System.out.println("All transactions delete with " + account.getId() + " id");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
     }
 
 

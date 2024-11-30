@@ -44,6 +44,7 @@ public class AddAccountTab extends Tab {
         // ArrayList of accounts type
         //accountComboBox.getItems().addAll("Checking", "Savings");
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTypeTable.getInstance().getAllAccountTypes()));
+        accountComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
         root.add(accountLabel, 0, 1);
         root.add(accountComboBox, 1, 1);
 
@@ -58,6 +59,7 @@ public class AddAccountTab extends Tab {
         Label currency = new Label("Currency:");
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
+        currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
         root.add(currency, 0,3);
         root.add(currencyComboBox,1,3);
