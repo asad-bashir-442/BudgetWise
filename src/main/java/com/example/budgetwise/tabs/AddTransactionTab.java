@@ -3,15 +3,14 @@ package com.example.budgetwise.tabs;
 import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class AddTransactionTab extends Tab {
 
@@ -31,6 +30,11 @@ public class AddTransactionTab extends Tab {
         ComboBox<Account> accountComboBox = new ComboBox<>();
 
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
+        if (AccountTable.getInstance().getAllAccounts().size() >=1){
+            accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
+        }else{
+            accountComboBox.setPlaceholder(new Text("Please create an account"));
+        }
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 
@@ -42,13 +46,14 @@ public class AddTransactionTab extends Tab {
 
 
         transactionTypeComboBox.setItems(FXCollections.observableArrayList(TransactionTypeTable.getInstance().getAllTransactionTypes()));
+        transactionTypeComboBox.setValue(TransactionTypeTable.getInstance().getAllTransactionTypes().get(0));
         root.add(transactionLabel,0,2);
         root.add(transactionTypeComboBox,1,2);
 
         // Creating label and Text Field for amount
         Label amountLabel = new Label("Amount:");
         TextField amountField = new TextField();
-        amountField.setPrefWidth(120);
+        //amountField.setPrefWidth(50);
         root.add(amountLabel,0,3);
         root.add(amountField,1,3);
 
@@ -56,7 +61,7 @@ public class AddTransactionTab extends Tab {
         //Cresting Label and textField for description
         Label descriptionLabel = new Label("Description");
         TextArea textArea = new TextArea();
-        textArea.setPrefRowCount(3);
+//        textArea.setPrefRowCount(3);
         root.add(descriptionLabel,0,4);
         root.add(textArea,1,4);
 
@@ -64,6 +69,7 @@ public class AddTransactionTab extends Tab {
         Label categoryLabel = new Label("Category");
         ComboBox<Category> categoryComboBox = new ComboBox<>();
         categoryComboBox.setItems(FXCollections.observableArrayList(CategoryTable.getInstance().getAllCategories()));
+        categoryComboBox.setValue(CategoryTable.getInstance().getAllCategories().get(0));
         root.add(categoryLabel,0,5);
         root.add(categoryComboBox,1,5);
 
@@ -77,27 +83,73 @@ public class AddTransactionTab extends Tab {
         Button button = new Button("Add Transaction");
         root.add(button,1,7);
 
+        Text error = new Text("Please fill all fields");
+        error.setFill(Color.rgb(255,0,0,0));
+        root.add(error,2,7);
+
+        Text success = new Text("Account successfully created");
+        success.setFill(Color.rgb(0,255,0,0));
+
+        root.add(success,2,7);
+
+
+
+        this.setOnSelectionChanged(event -> {
+            error.setFill(Color.rgb(255,0,0,0));
+
+            success.setFill(Color.rgb(0,255,0,0));
+
+        });
+
         button.setOnAction(event -> {
             Account account = accountComboBox.getValue();
             TransactionType transactionType = transactionTypeComboBox.getValue();
-            double amount = Double.parseDouble(amountField.getText());
+
             String description = textArea.getText();
             Category category = categoryComboBox.getValue();
 
             LocalDate date = datePicker.getValue();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String formattedDate = date.format(formatter);
 
-            Transaction newTransaction = new Transaction(formattedDate, transactionType.getId(), amount,description,category.getId(),account.getId());
-            System.out.println(newTransaction);
-            TransactionTable.getInstance().createTransaction(newTransaction);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+
+
+            if(amountField.getText().length() >=1 && textArea.getText().length() >=1 && date != null && isNumeric(amountField.getText())){
+                double amount = Double.parseDouble(amountField.getText());
+                String formattedDate = date.format(formatter);
+                Transaction newTransaction = new Transaction(formattedDate, transactionType.getId(), amount,description,category.getId(),account.getId());
+                TransactionTable.getInstance().createTransaction(newTransaction);
+
+                error.setFill(Color.rgb(255,0,0,0));
+                success.setFill(Color.rgb(0,255,0,1));
+
+                ViewAccountsTab.getInstance().refresh();
+
+            }else {
+                success.setFill(Color.rgb(0,255,0,0));
+                error.setFill(Color.rgb(255,0,0,1));
+            }
 
         });
 
         this.setContent(root);
 
     }
+
+    private boolean isNumeric(String str){
+        try{
+            Double.parseDouble(str);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
+
+
+    }
+
 
 
 
