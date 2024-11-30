@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -24,13 +25,13 @@ import java.util.ArrayList;
 
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
-    private PieChart chart;
-    public TableView tableView;
+    private PieChart chart = new PieChart();;
+    public TableView tableView = new TableView<>();;
 
     private Account chosenAccount;
 
     public ViewAccountsTab(){
-        this.setText("View Accounts");
+        this.setText("Accounts");
         BorderPane root=new BorderPane();
         GridPane topPanel=new GridPane();
         topPanel.setPadding(new Insets(10,10,10,10));
@@ -42,13 +43,20 @@ public class ViewAccountsTab extends Tab {
         accountComboBox = new ComboBox<>();
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
         accountComboBox.getSelectionModel().selectFirst();
-        chosenAccount = AccountTable.getInstance().getAllAccounts().get(0);
+        TransactionTable transactionTable =TransactionTable.getInstance();
+        if (AccountTable.getInstance().getAllAccounts().size() >= 1){
+            chosenAccount = AccountTable.getInstance().getAllAccounts().get(0);
+            tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
+            generateChart();
+        }else{
+            accountComboBox.setPlaceholder(new Text("Please create an account"));
+        }
+
+
+
         topPanel.add(account,0,0);
         topPanel.add(accountComboBox,1,0);
 
-        Button refresh=new Button("Refresh chart");
-        refresh.setOnAction(event -> generateChart());
-        topPanel.add(refresh,2,0);
 
         //get chosen account id
        // int accountId= Integer.parseInt(accountComboBox.getId());  wrong way to get account id
@@ -57,8 +65,7 @@ public class ViewAccountsTab extends Tab {
 //        int accountId=chosenAccount.getId();
 
         //create a table to show transactions that associate with account chosen in the combbox
-        TransactionTable transactionTable =TransactionTable.getInstance();
-        tableView=new TableView<>();
+
 //        TableColumn<Transaction, String> column1=new TableColumn<>("Transaction Id");
 //        column1.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getId())));
         // Date column
@@ -66,6 +73,7 @@ public class ViewAccountsTab extends Tab {
         column2.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDate()));
         // type column
         TableColumn<Transaction,String>column3=new TableColumn<>(" Transaction Type");
+
         column3.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getType())));
         //Amount Column
         TableColumn<Transaction,String>column4=new TableColumn<>("Amount");
@@ -77,7 +85,6 @@ public class ViewAccountsTab extends Tab {
         TableColumn<Transaction,String>column6=new TableColumn<>("Description");
         column6.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDescription()));
         tableView.getColumns().addAll(column2,column3,column4,column5,column6);
-        tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
 
         accountComboBox.setOnAction(e->{
                     chosenAccount = accountComboBox.getSelectionModel().getSelectedItem();
@@ -93,7 +100,7 @@ public class ViewAccountsTab extends Tab {
         tableView.setPrefHeight(250);
         tableView.setPrefWidth(800);
         topPanel.add(tableView,0,2,2,1);
-        chart=new PieChart();
+
         chart.setTitle("Transactions Breakdown");
         VBox bottomPanel=new VBox(10,chart);
         root.setTop(topPanel);

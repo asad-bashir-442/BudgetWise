@@ -132,7 +132,6 @@ public class TransactionTable implements TransactionDAO {
 
     @Override
     public void deleteTransactionByAccount(Account account) {
-        ArrayList<Transaction> transactions = getAllTransactions();
 
         String query = " DELETE FROM " + DBConst.TABLE_TRANSACTION + " WHERE " +
                 DBConst.TRANSACTION_COLUMN_ACCOUNT_ID + " = " + account.getId();

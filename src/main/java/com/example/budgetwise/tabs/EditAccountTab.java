@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 public class EditAccountTab extends Tab {
 
@@ -28,7 +29,14 @@ public class EditAccountTab extends Tab {
         ComboBox<Account> accountComboBox = new ComboBox<>();
 
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
-        accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
+
+        if (AccountTable.getInstance().getAllAccounts().size() >=1){
+            accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
+        }else{
+            accountComboBox.setPlaceholder(new Text("Please create an account"));
+        }
+
+
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 
