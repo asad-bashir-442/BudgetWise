@@ -29,6 +29,6 @@ public class Category {
     }
 
     public String toString(){
-        return id + " " + name + " ";
+        return name;
     }
 }

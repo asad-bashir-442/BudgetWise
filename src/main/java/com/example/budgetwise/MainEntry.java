@@ -27,9 +27,6 @@ public class MainEntry extends Application {
         loginPage.show();
         }else{
 
-//
-//            HomePage homePage=new HomePage();
-//            homePage.show();
 
 
             try{

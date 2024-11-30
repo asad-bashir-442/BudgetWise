@@ -1,5 +1,6 @@
 package com.example.budgetwise.tabs;
 
+import com.example.budgetwise.database.Database;
 import com.example.budgetwise.models.Account;
 import com.example.budgetwise.tables.AccountTable;
 import com.example.budgetwise.tables.TransactionTable;
@@ -9,12 +10,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 
+import java.util.ArrayList;
+
 public class ViewAccountTab extends Tab {
     public TableView tableView;
+
+    private ArrayList<Account> accounts;
+
     private static ViewAccountTab instance;
+
     public ViewAccountTab(){
         this.setText("View Account Table");
-        AccountTable accountTable=AccountTable.getInstance();
+        accounts = AccountTable.getInstance().getAllAccounts();
         BorderPane root=new BorderPane();
         tableView=new TableView<>();
         //Account Id column
@@ -33,16 +40,11 @@ public class ViewAccountTab extends Tab {
         TableColumn<Account,String>column5=new TableColumn<>("Currency");
         column5.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getId())));
         tableView.getColumns().addAll(column1,column2,column3,column4,column5);
-        tableView.getItems().addAll(AccountTable.getInstance().getAllAccounts());
+        tableView.getItems().addAll(accounts);
         root.setCenter(tableView);
         this.setContent(root);
-
     }
-//    public void refreshTable(){
-//        TransactionTable table=TransactionTable.getInstance();
-//        tableView.getItems().clear();
-//        tableView.getItems().addAll(table.getAllTransactions());
-//    }
+
     public static ViewAccountTab getInstance(){
         if(instance == null){
             instance = new ViewAccountTab();
