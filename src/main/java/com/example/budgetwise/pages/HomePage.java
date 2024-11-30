@@ -23,10 +23,12 @@ public class HomePage extends Stage {
         AddTransactionTab addTransactionTab = new AddTransactionTab();
         AddAccountTab addAccountTab = new AddAccountTab();
         ViewTransactionTab addTranscationTable = new ViewTransactionTab();
+
         ViewAccountTab viewAccountTable=new ViewAccountTab();
         EditAccountTab editAccountTab = new EditAccountTab();
-
-        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,viewAccountTable,editAccountTab);
+        ViewAccountTab addAccountTable=new ViewAccountTab();
+        ViewAccountsTab viewAccountsTab=new ViewAccountsTab();
+        tabPane.getTabs().addAll(addTransactionTab,addAccountTab,addTranscationTable,viewAccountTable,editAccountTab,addAccountTable,viewAccountsTab);
 
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
@@ -76,6 +78,6 @@ public class HomePage extends Stage {
         }
 
         super.setTitle("homepage");
-        super.setScene(new Scene(borderPane,800,500));
+        super.setScene(new Scene(borderPane,800,850));
     }
 }

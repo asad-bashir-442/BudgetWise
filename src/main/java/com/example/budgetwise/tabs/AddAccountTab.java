@@ -79,6 +79,7 @@ public class AddAccountTab extends Tab {
 
             Account newAccount = new Account(accountName,accountBalance,accountCurrency.getId(),accountType.getId());
             System.out.println(newAccount);
+           // ViewAccountTab.getInstance().refreshTable();
             AccountTable.getInstance().createAccount(newAccount);
         });
 

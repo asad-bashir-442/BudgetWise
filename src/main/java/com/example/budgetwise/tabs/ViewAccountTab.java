@@ -3,6 +3,7 @@ package com.example.budgetwise.tabs;
 import com.example.budgetwise.database.Database;
 import com.example.budgetwise.models.Account;
 import com.example.budgetwise.tables.AccountTable;
+import com.example.budgetwise.tables.TransactionTable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -15,6 +16,8 @@ public class ViewAccountTab extends Tab {
     public TableView tableView;
 
     private ArrayList<Account> accounts;
+
+    private static ViewAccountTab instance;
 
     public ViewAccountTab(){
         this.setText("View Account Table");
@@ -40,6 +43,13 @@ public class ViewAccountTab extends Tab {
         tableView.getItems().addAll(accounts);
         root.setCenter(tableView);
         this.setContent(root);
+    }
+
+    public static ViewAccountTab getInstance(){
+        if(instance == null){
+            instance = new ViewAccountTab();
+        }
+        return instance;
     }
 
 }
