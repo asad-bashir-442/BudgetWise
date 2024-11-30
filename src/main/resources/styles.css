@@ -1,0 +1,118 @@
+
+* {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #2C3E50;
+}
+
+
+.scene-background {
+    -fx-background-color: #E9E2DA;
+}
+
+/* Tab background styling */
+.tab-background {
+    -fx-background-color: #E9E2DA;
+    -fx-padding: 20px;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 10px;
+}
+
+/* Label styling for all fields */
+.label-style {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+/* TextField styling for all fields */
+.textfield-style {
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+    /*-fx-pref-width: 80px;*/
+    -fx-border-color: #e9e2da;
+    -fx-border-radius: 5px;
+    -fx-padding:5 10;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+}
+
+.textfield:focused {
+    -fx-background-color: #1b2141; /* Same navy blue background */
+    -fx-text-fill: white;          /* Keep text color white */
+    -fx-border-color: #e9e2da;     /* Beige border for focus */
+    -fx-border-width: 2px;         /* Slightly thicker border on focus */
+}
+
+.textarea-style{
+    -fx-background-color:#1b2141; /* Beige background for TextArea */
+    -fx-control-inner-background: #1b2141; /* Navy blue inner content */
+
+    -fx-text-fill: white;        /* Navy blue text color */
+    -fx-font-size: 14px;           /* Font size */
+    -fx-padding: 10 15;            /* Padding inside text area */
+    -fx-border-color: #1b2141;     /* Navy blue border */
+    -fx-border-radius: 10px;       /* Larger rounded corners for TextArea */
+    -fx-background-radius: 10px;
+}
+
+textarea:focused{
+    -fx-border-width: 2px;
+    -fx-border-color: #e9e2da;
+    -fx-background-color: #1b2141;
+    -fx-control-inner-background: #1b2141; /* Navy blue inner content */
+
+    -fx-text-fill: white
+}
+
+
+
+/* Button styling for all buttons */
+.button-style {
+    -fx-background-color: #2C3E50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 25px;
+    -fx-border-radius: 12px;
+    -fx-effect: innershadow(gaussian, #2C3E50, 10, 0.5, 1, 1);
+}
+
+/* Button hover effect */
+.button-style:hover {
+    -fx-background-color: #1b2141;
+    -fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);
+}
+
+
+
+.grid-container {
+    -fx-background-color: #E9E2DA;
+    -fx-padding: 20px;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 12px;
+}
+
+
+.scene-background {
+    -fx-background-color: #E9E2DA;
+}
+
+/* comboBox Styling */
+.combo-box {
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+    -fx-border-color: #e9e2da;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: #1b2141;
+}
+
