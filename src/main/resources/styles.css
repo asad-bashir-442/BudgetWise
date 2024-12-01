@@ -69,18 +69,18 @@ textarea:focused{
 
 /* Button styling for all buttons */
 .button-style {
-    -fx-background-color: #2C3E50;
+    -fx-background-color: #1b2141;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 12px 25px;
     -fx-border-radius: 12px;
-    -fx-effect: innershadow(gaussian, #2C3E50, 10, 0.5, 1, 1);
+   /* -fx-effect: innershadow(gaussian, #2C3E50, 10, 0.5, 1, 1); */
 }
 
 /* Button hover effect */
 .button-style:hover {
-    -fx-background-color: #1b2141;
-    -fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);
+    -fx-background-color: #2C3E50;
+    /*-fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);*/
 }
 
 
@@ -114,5 +114,11 @@ textarea:focused{
 .combo-box .list-cell:hover{
     -fx-background-color: #e9e2da;
     -fx-text-fill: #1b2141;
+}
+
+.table-view{
+    -fx-background-color: #1b2141;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
 }
 

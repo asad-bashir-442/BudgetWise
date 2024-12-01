@@ -66,7 +66,7 @@ public class AddTransactionTab extends Tab {
 
 
         //Cresting Label and textField for description
-        Label descriptionLabel = new Label("Description");
+        Label descriptionLabel = new Label("Description:");
         descriptionLabel.getStyleClass().add("label-style");
         TextArea textArea = new TextArea();
         textArea.getStyleClass().add("textarea-style");
@@ -75,7 +75,7 @@ public class AddTransactionTab extends Tab {
         root.add(textArea,1,4);
 
         // for category
-        Label categoryLabel = new Label("Category");
+        Label categoryLabel = new Label("Category:");
         categoryLabel.getStyleClass().add("label-style");
         ComboBox<Category> categoryComboBox = new ComboBox<>();
         categoryComboBox.getStyleClass().add("combo-box");
@@ -84,7 +84,7 @@ public class AddTransactionTab extends Tab {
         root.add(categoryLabel,0,5);
         root.add(categoryComboBox,1,5);
 
-        Label dateLabel = new Label("Create Date");
+        Label dateLabel = new Label("Create Date:");
         dateLabel.getStyleClass().add("label-style");
         DatePicker datePicker = new DatePicker();
        // datePicker.getStyleClass().add("combo-box");
@@ -93,7 +93,7 @@ public class AddTransactionTab extends Tab {
 
 
         //button to add transaction
-        Button button = new Button("Add Transaction");
+        Button button = new Button("Add Transaction:");
         button.getStyleClass().add("button-style");
         root.add(button,1,7);
 

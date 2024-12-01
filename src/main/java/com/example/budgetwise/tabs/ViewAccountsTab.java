@@ -39,10 +39,15 @@ public class ViewAccountsTab extends Tab {
         topPanel.setPadding(new Insets(10,10,10,10));
         topPanel.setVgap(10);
         topPanel.setHgap(10);
+        root.getStyleClass().add("tab-background");
+        topPanel.getStyleClass().add("tab-background");
+
 
         //select an account
         Label account=new Label("Account");
+        account.getStyleClass().add("label-style");
         accountComboBox = new ComboBox<>();
+        accountComboBox.getStyleClass().add("combo-box");
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
         accountComboBox.getSelectionModel().selectFirst();
         TransactionTable transactionTable =TransactionTable.getInstance();
@@ -89,6 +94,7 @@ public class ViewAccountsTab extends Tab {
         );
         tableView.setPrefHeight(250);
         tableView.setPrefWidth(800);
+        tableView.getStyleClass().add("table-view");
         topPanel.add(tableView,0,2,2,1);
 
         chart.setTitle("Transactions Breakdown");
@@ -99,6 +105,8 @@ public class ViewAccountsTab extends Tab {
 
 
      this.setContent(root);
+     String css = getClass().getResource("/styles.css").toExternalForm();
+     root.getStylesheets().add(css);
 
     }
 

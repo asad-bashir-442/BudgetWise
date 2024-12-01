@@ -28,6 +28,7 @@ public class EditAccountTab extends Tab {
 
 
         Label accountLabel = new Label("Account");
+        accountLabel.getStyleClass().add("label-style");
         ComboBox<Account> accountComboBox = new ComboBox<>();
 
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
@@ -44,13 +45,20 @@ public class EditAccountTab extends Tab {
 
         //creating label and textfield for account form
         Label nameLabel = new Label("New Account Name:");
+        nameLabel.getStyleClass().add("label-style");
+
         TextField nameField = new TextField();
+        nameField.getStyleClass().add("textfield-style");
+
         nameField.setPrefWidth(150);
         root.add(nameLabel,0,2);
         root.add(nameField,1,2);
 
         Label transactionTypeLabel = new Label("Account Type:");
+        transactionTypeLabel.getStyleClass().add("label-style");
+
         ComboBox<AccountType> accountTypeComboBox = new ComboBox<>();
+        accountTypeComboBox.getStyleClass().add("combo-box");
         accountTypeComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
 
 
@@ -59,7 +67,11 @@ public class EditAccountTab extends Tab {
         root.add(accountTypeComboBox,1,3);
 
         Label currency = new Label("New Currency:");
+        currency.getStyleClass().add("label-style");
+
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
+        currencyComboBox.getStyleClass().add("combo-box");
+
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
         currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
@@ -67,13 +79,19 @@ public class EditAccountTab extends Tab {
         root.add(currencyComboBox,1,4);
 
         Button editBtn = new Button("Edit Account");
+        editBtn.getStyleClass().add("button-style");
         root.add(editBtn,1,5);
 
         Button deleteBtn  = new Button("Delete Account");
+        deleteBtn.getStyleClass().add("button-style");
+
         root.add(deleteBtn,2,5);
 
 
         this.setContent(root);
+
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        root.getStylesheets().add(css);
 
 
         deleteBtn.setOnAction(event -> {

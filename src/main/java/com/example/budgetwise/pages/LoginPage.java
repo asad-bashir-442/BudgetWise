@@ -24,6 +24,7 @@ public class LoginPage extends Stage {
         root.setHgap(10);
         root.setVgap(10);
 
+
         Label userNameLabel = new Label("Username");
         TextField userNameTextField = new TextField();
 
