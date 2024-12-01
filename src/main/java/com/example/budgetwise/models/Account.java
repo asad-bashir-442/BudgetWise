@@ -66,7 +66,8 @@ public class Account {
     }
 
     public String toString(){
-        return id+" "+name + " " + balance + " " + " " + currency_id + " " + type_id ;
+        //return id+" "+name + " " + balance + " " + " " + currency_id + " " + type_id ;
+        return name;
     }
 
 }

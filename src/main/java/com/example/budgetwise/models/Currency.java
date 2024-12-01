@@ -27,6 +27,6 @@ public class Currency {
     }
 
     public String toString(){
-        return id + " " + type;
+        return type;
     }
 }
