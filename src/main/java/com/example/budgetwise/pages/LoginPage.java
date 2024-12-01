@@ -23,21 +23,32 @@ public class LoginPage extends Stage {
         GridPane root =new GridPane();
         root.setHgap(10);
         root.setVgap(10);
+        root.getStyleClass().add("tab-background");
 
 
         Label userNameLabel = new Label("Username");
+        userNameLabel.getStyleClass().add("label-style");
         TextField userNameTextField = new TextField();
+        userNameTextField.getStyleClass().add("textfield-style");
 
         Label passwordLabel = new Label("Password");
+        passwordLabel.getStyleClass().add("label-style");
         PasswordField passwordField = new PasswordField();
+        passwordField.getStyleClass().add("textfield-style");
 
         Label serverLabel = new Label("Server Location");
+        serverLabel.getStyleClass().add("label-style");
         TextField serverTextField = new TextField();
+        serverTextField.getStyleClass().add("textfield-style");
 
         Label databaseLabel = new Label("Database Name");
+        databaseLabel.getStyleClass().add("label-style");
+
         TextField databaseTextField = new TextField();
+        databaseTextField.getStyleClass().add("textfield-style");
 
         Button testConnectionBtn = new Button("Test Connection");
+        testConnectionBtn.getStyleClass().add("button-style");
         //write method on the button
         testConnectionBtn.setOnAction(event -> {
             DB_NAME=databaseTextField.getText();
@@ -78,6 +89,10 @@ public class LoginPage extends Stage {
 
         root.add(testConnectionBtn,1,5);
         root.setAlignment(Pos.CENTER);
+
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        root.getStylesheets().add(css);
+
 
         Scene scene=new Scene(root,500,500);
         super.setTitle("LogIn");
