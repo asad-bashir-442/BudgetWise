@@ -116,9 +116,42 @@ textarea:focused{
     -fx-text-fill: #1b2141;
 }
 
-.table-view{
-    -fx-background-color: #1b2141;
-    -fx-border-color: #dcdcdc;
+
+.table-view {
+    -fx-background-color: #e9e2da; /* Matches your background */
+    -fx-border-color: #d0c7be;    /* Slightly darker border */
     -fx-border-width: 1px;
+    -fx-alternate-row-fill-visible: true;
+    -fx-control-inner-background: #f3ece6; /* Light complementary background */
 }
+
+.table-view .column-header-background {
+    -fx-background-color: #dcd3c8; /* Slightly darker shade for headers */
+}
+
+.table-view .column-header {
+    -fx-text-fill: #5a4f47; /* Warm dark gray text */
+    -fx-font-weight: bold;
+}
+
+.table-view .cell {
+    -fx-text-fill: #5a4f47; /* Warm dark gray text for rows */
+    -fx-font-size: 14px;
+    -fx-background-color: #f3ece6; /* Light complementary shade */
+}
+
+.table-view .cell:filled:even {
+    -fx-background-color: #e9e2da; /* Matches the main background */
+}
+
+.table-view .cell:filled:selected {
+    -fx-background-color: #d2cabf; /* Highlighted rows in a darker shade */
+    -fx-text-fill: #000000;        /* Black text for contrast on selection */
+}
+
+.table-view .focus {
+    -fx-border-color: transparent; /* Removes focus border */
+}
+
+
 
