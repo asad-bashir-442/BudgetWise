@@ -23,6 +23,8 @@ public class EditAccountTab extends Tab {
         root.setPadding(new Insets(10,10,10,10));
         root.setVgap(10);
         root.setHgap(10);
+        root.getStyleClass().add("tab-background");
+
 
 
         Label accountLabel = new Label("Account");
