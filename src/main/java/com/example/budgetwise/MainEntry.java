@@ -12,6 +12,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * @author  Lujia, Asad
+ * If the credentials file does not exist, the login page is displayed. Otherwise,
+ * credentials are read from the file, and the home page is launched with the user's
+ * information.
+ */
 public class MainEntry extends Application {
     public final String FILE="info.txt";
 

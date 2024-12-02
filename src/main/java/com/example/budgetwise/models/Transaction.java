@@ -1,5 +1,11 @@
 package com.example.budgetwise.models;
 
+import com.example.budgetwise.tables.CategoryTable;
+import com.example.budgetwise.tables.CurrencyTable;
+import com.example.budgetwise.tables.TransactionTypeTable;
+
+import java.util.ArrayList;
+
 public class Transaction {
     private int id;
 
@@ -71,6 +77,18 @@ public class Transaction {
         this.category_id = category_id;
     }
 
+    private String name;
+
+    private String category;
+
+    public String getCategory(){
+        return category;
+    }
+
+    public String getName(){
+        return name;
+    }
+
     public Transaction(int id, String date, int type, double amount, String description, int category_id, int account_id) {
         this.id = id;
         this.date = date;
@@ -79,6 +97,22 @@ public class Transaction {
         this.description = description;
         this.category_id = category_id;
         this.account_id = account_id;
+
+        ArrayList<TransactionType> transactionTypes = TransactionTypeTable.getInstance().getAllTransactionTypes();
+        ArrayList<Category> categories = CategoryTable.getInstance().getAllCategories();
+
+        for (Category category : categories){
+            if (category_id == category.getId()){
+                this.category = category.getName();
+            }
+
+        }
+
+        for (TransactionType transactionType : transactionTypes){
+            if (type == transactionType.getId()){
+                name = transactionType.getType();
+            }
+        }
     }
 
     public Transaction (String date, int type, double amount, String description, int category_id, int account_id){
@@ -88,6 +122,14 @@ public class Transaction {
         this.description = description;
         this.category_id = category_id;
         this.account_id = account_id;
+
+        ArrayList<TransactionType> transactionTypes = TransactionTypeTable.getInstance().getAllTransactionTypes();
+
+        for (TransactionType transactionType : transactionTypes){
+            if (type == transactionType.getId()){
+                name = transactionType.getType();
+            }
+        }
     }
 
     public String toString(){

@@ -14,6 +14,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+/**
+ * This class allows the user to edit a account
+ */
 public class EditAccountTab extends Tab {
 
     private static EditAccountTab instance;
@@ -28,10 +31,12 @@ public class EditAccountTab extends Tab {
         root.setPadding(new Insets(10,10,10,10));
         root.setVgap(10);
         root.setHgap(10);
+        root.getStyleClass().add("tab-background");
 
 
         Label accountLabel = new Label("Account");
 
+        accountComboBox.getStyleClass().add("textfield-style");
 
 
         refresh();
@@ -40,15 +45,19 @@ public class EditAccountTab extends Tab {
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 
-        //creating label and textfield for account form
+        /**
+         * creating label and textfield for account form
+         */
         Label nameLabel = new Label("New Account Name:");
         TextField nameField = new TextField();
+        nameField.getStyleClass().add("textfield-style");
         nameField.setPrefWidth(150);
         root.add(nameLabel,0,2);
         root.add(nameField,1,2);
 
         Label transactionTypeLabel = new Label("Account Type:");
         ComboBox<AccountType> accountTypeComboBox = new ComboBox<>();
+        accountTypeComboBox.getStyleClass().add("textfield-style");
         accountTypeComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
 
 
@@ -58,6 +67,7 @@ public class EditAccountTab extends Tab {
 
         Label currency = new Label("New Currency:");
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
+        currencyComboBox.getStyleClass().add("textfield-style");
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
         currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
@@ -65,9 +75,11 @@ public class EditAccountTab extends Tab {
         root.add(currencyComboBox,1,4);
 
         Button editBtn = new Button("Edit Account");
+        editBtn.getStyleClass().add("button-style");
         root.add(editBtn,1,5);
 
         Button deleteBtn  = new Button("Delete Account");
+        deleteBtn.getStyleClass().add("button-style");
         root.add(deleteBtn,2,5);
 
 
@@ -88,6 +100,9 @@ public class EditAccountTab extends Tab {
             success.setFill(Color.rgb(0,255,0,0));
 
         });
+
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        root.getStylesheets().add(css); // Ensure this line is executed
 
         this.setContent(root);
 
@@ -144,6 +159,9 @@ public class EditAccountTab extends Tab {
 
     }
 
+    /**
+     * This method will refresh the comboBox when the user modifies the database
+     */
     public void refresh(){
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
 

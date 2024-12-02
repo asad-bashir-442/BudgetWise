@@ -13,6 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+/**
+ * This class allows the user to add an account
+ */
 public class AddAccountTab extends Tab {
 
     public AddAccountTab(){
@@ -26,8 +29,9 @@ public class AddAccountTab extends Tab {
         root.getStyleClass().add("tab-background");
 
 
-
-        //creating label and textfield for account form
+        /**
+         * creating label and textfield for account form
+         */
         Label nameLabel = new Label("Account Name:");
         nameLabel.getStyleClass().add("label-style");
         TextField nameField = new TextField();
@@ -37,7 +41,9 @@ public class AddAccountTab extends Tab {
         root.add(nameLabel,0,0);
         root.add(nameField,1,0);
 
-        //For Account type
+        /**
+         * For Account type
+         */
         Label accountLabel = new Label("Account Type:");
         accountLabel.getStyleClass().add("label-style");
 
@@ -46,8 +52,9 @@ public class AddAccountTab extends Tab {
         ComboBox<AccountType> accountComboBox = new ComboBox<>();
         accountComboBox.getStyleClass().add("textfield-style");
 
-        // ArrayList of accounts type
-        //accountComboBox.getItems().addAll("Checking", "Savings");
+        /**
+         * ArrayList of accounts type
+         */
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTypeTable.getInstance().getAllAccountTypes()));
         accountComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
 
@@ -55,7 +62,9 @@ public class AddAccountTab extends Tab {
         root.add(accountComboBox, 1, 1);
 
 
-        //For account balance
+        /**
+         * For account balance
+         */
         Label amountLabel = new Label("Balance:");
         amountLabel.getStyleClass().add("label-style");
 
@@ -77,6 +86,10 @@ public class AddAccountTab extends Tab {
         root.add(currency, 0,3);
         root.add(currencyComboBox,1,3);
 
+        /**
+         * Error and success are for form validation
+         */
+
         Text error = new Text("Please fill all fields");
         error.setFill(Color.rgb(255,0,0,0));
         root.add(error,2,3);
@@ -89,10 +102,10 @@ public class AddAccountTab extends Tab {
 
 
 
-        Button button = new Button("Add Account");
-        button.getStyleClass().add("button-style");
+        Button addAccountBtn = new Button("Add Account");
+        addAccountBtn.getStyleClass().add("button-style");
 
-        root.add(button,1,4);
+        root.add(addAccountBtn,1,4);
 
         this.setOnSelectionChanged(event -> {
             error.setFill(Color.rgb(255,0,0,0));
@@ -106,7 +119,7 @@ public class AddAccountTab extends Tab {
         String css = getClass().getResource("/styles.css").toExternalForm();
         root.getStylesheets().add(css);
 
-        button.setOnAction(event -> {
+        addAccountBtn.setOnAction(event -> {
             String accountName = nameField.getText();
             AccountType accountType = accountComboBox.getValue();
 

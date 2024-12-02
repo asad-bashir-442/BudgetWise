@@ -14,11 +14,23 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * This file acts as the main homepage and where the main application is held
+ */
 public class HomePage extends Stage {
+
+    /**
+     * @author Asad Bashir, Lujia Yang
+     * use this page to show functionalities
+     */
     //no content just use it to show here is the home page
+
     public HomePage(){
         BorderPane borderPane=new BorderPane();
 
+        /**
+         * Tabs for the user to navigate to the different parts of the application
+         */
         TabPane tabPane = new TabPane();
         AddTransactionTab addTransactionTab = AddTransactionTab.getInstance();
         AddAccountTab addAccountTab = new AddAccountTab();
@@ -36,7 +48,9 @@ public class HomePage extends Stage {
 
 
         borderPane.setCenter(tabPane);
-        //set menu bar
+        /**
+         * Set menu bar
+         */
         MenuBar menuBar=new MenuBar();
         Menu fileMenu=new Menu("File");
         Menu creditsMenu=new Menu("About");
