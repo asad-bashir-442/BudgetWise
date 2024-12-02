@@ -76,5 +76,41 @@ public class AccountTable implements AccountDAO {
 
     }
 
+    @Override
+    public void updateAccount(Account account) {
+        String query = "UPDATE " + DBConst.TABLE_ACCOUNT + " SET " +
+                DBConst.ACCOUNT_COLUMN_NAME + " = " + "'" +account.getName() +"'"+ "," +
+                DBConst.ACCOUNT_COLUMN_TYPE_ID + " = " +  account.getType_id() + "," +
+                DBConst.ACCOUNT_COLUMN_CURRENCY_ID + " = " + account.getCurrency_id() +
+                " WHERE " + DBConst.ACCOUNT_COLUMN_ID + " = " + account.getId();
+
+        try{
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Updated record");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    public void deleteAccount(Account account) {
+
+        TransactionTable.getInstance().deleteTransactionByAccount(account);
+
+        String query = "DELETE FROM " + DBConst.TABLE_ACCOUNT + " WHERE " +
+                    DBConst.ACCOUNT_COLUMN_ID + " = " + account.getId();
+
+        try{
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted record");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

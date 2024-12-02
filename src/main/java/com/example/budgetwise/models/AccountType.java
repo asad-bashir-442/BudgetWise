@@ -28,7 +28,7 @@ public class AccountType {
     }
 
     public String toString(){
-        return id + " " + type;
+        return type;
     }
 
 }

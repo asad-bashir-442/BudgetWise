@@ -5,18 +5,13 @@ import com.example.budgetwise.models.AccountType;
 import com.example.budgetwise.models.Currency;
 import com.example.budgetwise.tables.AccountTable;
 import com.example.budgetwise.tables.AccountTypeTable;
-import com.example.budgetwise.tables.CategoryTable;
 import com.example.budgetwise.tables.CurrencyTable;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class AddAccountTab extends Tab {
 
@@ -54,6 +49,8 @@ public class AddAccountTab extends Tab {
         // ArrayList of accounts type
         //accountComboBox.getItems().addAll("Checking", "Savings");
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTypeTable.getInstance().getAllAccountTypes()));
+        accountComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
+
         root.add(accountLabel, 0, 1);
         root.add(accountComboBox, 1, 1);
 
@@ -75,9 +72,20 @@ public class AddAccountTab extends Tab {
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
         currencyComboBox.getStyleClass().add("textfield-style");
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
+        currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
         root.add(currency, 0,3);
         root.add(currencyComboBox,1,3);
+
+        Text error = new Text("Please fill all fields");
+        error.setFill(Color.rgb(255,0,0,0));
+        root.add(error,2,3);
+
+
+        Text success = new Text("Account successfully created");
+        success.setFill(Color.rgb(0,255,0,0));
+
+        root.add(success,2,3);
 
 
 
@@ -85,6 +93,13 @@ public class AddAccountTab extends Tab {
         button.getStyleClass().add("button-style");
 
         root.add(button,1,4);
+
+        this.setOnSelectionChanged(event -> {
+            error.setFill(Color.rgb(255,0,0,0));
+
+            success.setFill(Color.rgb(0,255,0,0));
+
+        });
 
         this.setContent(root);
 
@@ -94,12 +109,28 @@ public class AddAccountTab extends Tab {
         button.setOnAction(event -> {
             String accountName = nameField.getText();
             AccountType accountType = accountComboBox.getValue();
-            double accountBalance = Double.parseDouble(amountField.getText());
+
             Currency accountCurrency = currencyComboBox.getValue();
 
-            Account newAccount = new Account(accountName,accountBalance,accountCurrency.getId(),accountType.getId());
-            System.out.println(newAccount);
-            AccountTable.getInstance().createAccount(newAccount);
+
+            if(accountName.length() >=1 && amountField.getText().length()>=1 ){
+                double accountBalance = Double.parseDouble(amountField.getText());
+                Account newAccount = new Account(accountName,accountBalance,accountCurrency.getId(),accountType.getId());
+                AccountTable.getInstance().createAccount(newAccount);
+                error.setFill(Color.rgb(255,0,0,0));
+                success.setFill(Color.rgb(0,255,0,1));
+
+                ViewAccountsTab.getInstance().refresh();
+                AddTransactionTab.getInstance().refresh();
+                EditAccountTab.getInstance().refresh();
+            }else{
+                error.setFill(Color.rgb(255,0,0,1));
+                success.setFill(Color.rgb(0,255,0,0));
+            }
+
+
+
+
         });
 
 
