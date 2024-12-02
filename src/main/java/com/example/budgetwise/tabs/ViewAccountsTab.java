@@ -53,10 +53,11 @@ public class ViewAccountsTab extends Tab {
         Label account=new Label("Account");
         accountComboBox = new ComboBox<>();
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
-        accountComboBox.getSelectionModel().selectFirst();
+
         TransactionTable transactionTable =TransactionTable.getInstance();
         if (AccountTable.getInstance().getAllAccounts().size() >= 1){
             chosenAccount = AccountTable.getInstance().getAllAccounts().get(0);
+            accountComboBox.getSelectionModel().selectFirst();
             tableView.getItems().addAll(transactionTable.searchTransaction(chosenAccount.getId()));
             generateChart();
         }else{
@@ -115,6 +116,9 @@ public class ViewAccountsTab extends Tab {
      * generates pie chart data based on transaction amount
      */
     private void generateChart() {
+        if (chosenAccount == null){
+            return;
+        }
         TransactionTable transactionTable=TransactionTable.getInstance();
         CategoryTable categoryTable=CategoryTable.getInstance();
 
@@ -123,7 +127,7 @@ public class ViewAccountsTab extends Tab {
         ArrayList<PieChart.Data> data=new ArrayList<>();
         //have to write a method in transaction table
         for(Category category:categories){
-            double amount=transactionTable.getCategoryAmount(category.getId());
+            double amount=transactionTable.getCategoryAmount(category.getId(),chosenAccount.getId());
             if(amount>0){
                 data.add(new PieChart.Data(category.getName(),amount));
 
@@ -140,9 +144,12 @@ public class ViewAccountsTab extends Tab {
      */
     private void refreshTable(){
         TransactionTable table=TransactionTable.getInstance();
-        ArrayList<Transaction> transactions=table.searchTransaction(chosenAccount.getId());
-        tableView.getItems().clear();
-        tableView.getItems().addAll(transactions);
+        if (chosenAccount != null){
+            ArrayList<Transaction> transactions=table.searchTransaction(chosenAccount.getId());
+            tableView.getItems().clear();
+            tableView.getItems().addAll(transactions);
+        }
+
 
 
     }
