@@ -14,7 +14,11 @@ import java.time.format.DateTimeFormatter;
 
 public class AddTransactionTab extends Tab {
 
-    public AddTransactionTab(){
+    private static AddTransactionTab instance;
+
+    private ComboBox<Account> accountComboBox = new ComboBox<>();
+
+    private AddTransactionTab(){
 
         this.setText("Add Transaction");
 
@@ -27,14 +31,10 @@ public class AddTransactionTab extends Tab {
 
         // Creating label and comboBox for account type
         Label accountLabel = new Label("Account");
-        ComboBox<Account> accountComboBox = new ComboBox<>();
 
-        accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
-        if (AccountTable.getInstance().getAllAccounts().size() >=1){
-            accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
-        }else{
-            accountComboBox.setPlaceholder(new Text("Please create an account"));
-        }
+
+
+        refresh();
         root.add(accountLabel,0,1);
         root.add(accountComboBox,1,1);
 
@@ -80,14 +80,14 @@ public class AddTransactionTab extends Tab {
 
 
         //button to add transaction
-        Button button = new Button("Add Transaction");
-        root.add(button,1,7);
+        Button addTransactionBtn = new Button("Add Transaction");
+        root.add(addTransactionBtn,1,7);
 
         Text error = new Text("Please fill all fields");
         error.setFill(Color.rgb(255,0,0,0));
         root.add(error,2,7);
 
-        Text success = new Text("Account successfully created");
+        Text success = new Text("Transaction successfully created");
         success.setFill(Color.rgb(0,255,0,0));
 
         root.add(success,2,7);
@@ -101,7 +101,7 @@ public class AddTransactionTab extends Tab {
 
         });
 
-        button.setOnAction(event -> {
+        addTransactionBtn.setOnAction(event -> {
             Account account = accountComboBox.getValue();
             TransactionType transactionType = transactionTypeComboBox.getValue();
 
@@ -117,7 +117,7 @@ public class AddTransactionTab extends Tab {
 
 
 
-            if(amountField.getText().length() >=1 && textArea.getText().length() >=1 && date != null && isNumeric(amountField.getText())){
+            if(amountField.getText().length() >=1 && textArea.getText().length() >=1 && date != null && isNumeric(amountField.getText()) && account != null){
                 double amount = Double.parseDouble(amountField.getText());
                 String formattedDate = date.format(formatter);
                 Transaction newTransaction = new Transaction(formattedDate, transactionType.getId(), amount,description,category.getId(),account.getId());
@@ -138,6 +138,24 @@ public class AddTransactionTab extends Tab {
         this.setContent(root);
 
     }
+
+    public static AddTransactionTab getInstance(){
+        if (instance == null){
+            instance = new AddTransactionTab();
+        }
+        return instance;
+
+    }
+
+    public void refresh(){
+        accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
+        if (AccountTable.getInstance().getAllAccounts().size() >=1){
+            accountComboBox.getSelectionModel().selectFirst();
+        }else{
+            accountComboBox.setPlaceholder(new Text("Please create an account"));
+        }
+    }
+
 
     private boolean isNumeric(String str){
         try{
