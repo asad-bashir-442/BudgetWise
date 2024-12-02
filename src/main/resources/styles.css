@@ -40,7 +40,7 @@
 }
 
 .textfield:focused {
-    -fx-background-color: #1b2141; 
+    -fx-background-color: #1b2141;
     -fx-text-fill: white;
     -fx-border-color: #e9e2da;
     -fx-border-width: 2px;
