@@ -22,7 +22,9 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 
-
+/**
+ * This class allows the user to view all their accounts and transactions
+ */
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
     private PieChart chart = new PieChart();;
@@ -40,9 +42,12 @@ public class ViewAccountsTab extends Tab {
         topPanel.setVgap(10);
         topPanel.setHgap(10);
 
-        //select an account
+        /**
+         * select an account
+         */
         Label account=new Label("Account");
         accountComboBox = new ComboBox<>();
+        accountComboBox.getStyleClass().add("textfield-style");
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
 
         TransactionTable transactionTable =TransactionTable.getInstance();
@@ -60,23 +65,37 @@ public class ViewAccountsTab extends Tab {
         topPanel.add(account,0,0);
         topPanel.add(accountComboBox,1,0);
 
-        // Date column
+        /**
+         * Date column
+         */
         TableColumn<Transaction, String>column2 =new TableColumn<>("Date");
-        column2.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDate()));
-        // type column
+        column2.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDate().substring(0,10)));
+        /**
+         * type column
+         */
         TableColumn<Transaction,String>column3=new TableColumn<>(" Transaction Type");
-
-        column3.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getType())));
-        //Amount Column
+        column3.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getName())));
+        column3.setPrefWidth(175);
+        /**
+         * Amount Column
+         */
         TableColumn<Transaction,String>column4=new TableColumn<>("Amount");
         column4.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getAmount())));
-        //currency id
-        TableColumn<Transaction,String>column5=new TableColumn<>("Currency");
-        column5.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getType())));
-        //Description
+        column4.setPrefWidth(125);
+        /**
+         * currency id
+         */
+        TableColumn<Transaction,String>column5=new TableColumn<>("Category");
+        column5.setCellValueFactory(e->new SimpleStringProperty(String.valueOf(e.getValue().getCategory())));
+        column5.setPrefWidth(140);
+        /**
+         * Description
+         */
         TableColumn<Transaction,String>column6=new TableColumn<>("Description");
         column6.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getDescription()));
+        column6.setPrefWidth(200);
         tableView.getColumns().addAll(column2,column3,column4,column5,column6);
+
 
         accountComboBox.setOnAction(e->{
 
@@ -98,11 +117,17 @@ public class ViewAccountsTab extends Tab {
         root.setCenter(tableView);
         root.setBottom(bottomPanel);
 
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        root.getStylesheets().add(css); // Ensure this line is executed
 
-     this.setContent(root);
+
+        this.setContent(root);
 
     }
 
+    /**
+     * This method will generate the pie chart based on what accpunt is selected
+     */
     private void generateChart() {
         if (chosenAccount == null){
             return;
@@ -126,6 +151,10 @@ public class ViewAccountsTab extends Tab {
 
 
     }
+
+    /**
+     * This method will refresh the transaction table
+     */
     private void refreshTable(){
         TransactionTable table=TransactionTable.getInstance();
         if (chosenAccount != null){
@@ -145,6 +174,9 @@ public class ViewAccountsTab extends Tab {
         return instance;
     }
 
+    /**
+     * This method will refresh the table, pie chart and comboBox
+     */
     public void refresh(){
         refreshTable();
         generateChart();

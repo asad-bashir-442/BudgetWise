@@ -18,6 +18,11 @@ import java.sql.DriverManager;
 
 import static com.example.budgetwise.database.Const.*;
 
+/**
+ * This class acts as the login page and is the first thing the user sees
+ * If the user already has valid credentials move them to homepage
+ * otherwise show them login form
+ */
 public class LoginPage extends Stage {
     public LoginPage(){
         GridPane root =new GridPane();
@@ -85,6 +90,15 @@ public class LoginPage extends Stage {
 
 
     }
+
+    /**
+     * This method takes the user credentials and save them to a text file
+     * @param db_name
+     * @param db_pass
+     * @param dblocation
+     * @param dbuser
+     * @throws IOException
+     */
     public void saveUserInfo(String db_name, String db_pass ,String dblocation, String dbuser) throws IOException {
         String info="info.txt";
         FileWriter myWriter = new FileWriter(info);
@@ -95,6 +109,12 @@ public class LoginPage extends Stage {
 
         myWriter.close();
     }
+
+    /**
+     * This method checks against the database if credentials given from the user are valid
+     * and builds a proper connection to the database
+     * @return
+     */
     public boolean validCredentials(){
         Connection connection;
         try{
