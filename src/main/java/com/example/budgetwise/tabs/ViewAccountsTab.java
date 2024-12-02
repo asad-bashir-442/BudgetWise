@@ -21,7 +21,16 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author :Lujia, Asad
+ * a tab for user to check and managing accounts
+ * <p>it contains:</p>
+ * <ul>
+ *     <li>a table for displaying transactions</li>
+ *     <li>a combobox for selecting account</li>
+ *     <li>a pie chart for viewing transaction breakdown details</li>
+ * </ul>
+ */
 
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
@@ -103,6 +112,9 @@ public class ViewAccountsTab extends Tab {
 
     }
 
+    /**
+     * generates pie chart data based on transaction amount
+     */
     private void generateChart() {
         if (chosenAccount == null){
             return;
@@ -126,6 +138,10 @@ public class ViewAccountsTab extends Tab {
 
 
     }
+
+    /**
+     * Refreshes the table view to display the latest transactions of the selected account.
+     */
     private void refreshTable(){
         TransactionTable table=TransactionTable.getInstance();
         if (chosenAccount != null){
@@ -138,13 +154,19 @@ public class ViewAccountsTab extends Tab {
 
     }
 
+    /**
+     * get instance
+     * @return
+     */
     public static ViewAccountsTab getInstance() {
         if(instance == null){
             instance = new ViewAccountsTab();
         }
         return instance;
     }
-
+    /**
+     * Refreshes the table view to display the latest selected account.
+     */
     public void refresh(){
         refreshTable();
         generateChart();

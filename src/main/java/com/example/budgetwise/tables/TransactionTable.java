@@ -84,6 +84,12 @@ public class TransactionTable implements TransactionDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * to get a list of transactions for a specific account ID from the database
+     * @param accountId
+     * @return the transaction for the specified account
+     */
     public ArrayList<Transaction> searchTransaction(int accountId){
 
         String query=" SELECT * FROM "+ TABLE_TRANSACTION+" WHERE "+DBConst.TRANSACTION_COLUMN_ACCOUNT_ID+" = "+accountId;
@@ -110,7 +116,16 @@ public class TransactionTable implements TransactionDAO {
         return transactions;
     }
 
+
+    /**
+     *to get total transaction amount for a specific category from the database.
+     * @param cat the category id
+     * @return the total amount of transactions for the specified category
+     */
+
+
     public double getCategoryAmount(int cat,int accountId){
+
         double amount=0;
         try {
             PreparedStatement getAmount = db.getConnection()

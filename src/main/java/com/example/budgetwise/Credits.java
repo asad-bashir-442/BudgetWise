@@ -17,9 +17,15 @@ import javafx.util.Duration;
 import java.util.Objects;
 
 /**
- * Author: 4A Development
+ * @author Lujia
  * Student Number:0841073
  * to show the credits of the project
+ * <p>it contains:</p>
+ * <ul>
+ *     <li> text to show the group name and members</li>
+ *     <li>Image to show logo</li>
+ *     <li>animations</li>
+ * </ul>
  */
 public class Credits extends Stage {
     Text lujiaText;
