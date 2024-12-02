@@ -23,18 +23,28 @@ public class AddAccountTab extends Tab {
         root.setPadding(new Insets(10,10,10,10));
         root.setVgap(10);
         root.setHgap(10);
+        root.getStyleClass().add("tab-background");
+
 
 
         //creating label and textfield for account form
         Label nameLabel = new Label("Account Name:");
+        nameLabel.getStyleClass().add("label-style");
         TextField nameField = new TextField();
+        nameField.getStyleClass().add("textfield-style");
+
         nameField.setPrefWidth(150);
         root.add(nameLabel,0,0);
         root.add(nameField,1,0);
 
         //For Account type
         Label accountLabel = new Label("Account Type:");
+        accountLabel.getStyleClass().add("label-style");
+
+        nameLabel.getStyleClass().add("label-style");
+
         ComboBox<AccountType> accountComboBox = new ComboBox<>();
+        accountComboBox.getStyleClass().add("textfield-style");
 
         // ArrayList of accounts type
         //accountComboBox.getItems().addAll("Checking", "Savings");
@@ -47,13 +57,20 @@ public class AddAccountTab extends Tab {
 
         //For account balance
         Label amountLabel = new Label("Balance:");
+        amountLabel.getStyleClass().add("label-style");
+
         TextField amountField = new TextField();
+        amountField.getStyleClass().add("textfield-style");
+
         amountField.setPrefWidth(120);
         root.add(amountLabel,0,2);
         root.add(amountField,1,2);
 
         Label currency = new Label("Currency:");
+        currency.getStyleClass().add("label-style");
+
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
+        currencyComboBox.getStyleClass().add("textfield-style");
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
         currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
@@ -73,6 +90,8 @@ public class AddAccountTab extends Tab {
 
 
         Button button = new Button("Add Account");
+        button.getStyleClass().add("button-style");
+
         root.add(button,1,4);
 
         this.setOnSelectionChanged(event -> {
@@ -83,6 +102,9 @@ public class AddAccountTab extends Tab {
         });
 
         this.setContent(root);
+
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        root.getStylesheets().add(css);
 
         button.setOnAction(event -> {
             String accountName = nameField.getText();
