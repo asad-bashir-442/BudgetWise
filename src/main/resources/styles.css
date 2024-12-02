@@ -165,11 +165,10 @@ textarea:focused{
     -fx-alignment: center;
 }
 
-/* Style for selected tab */+
-                            .tab:selected {
-                                -fx-background-color: #d0c7be;
-                                -fx-text-fill: #FFFFFF;
-                            }
+.tab:selected {
+    -fx-background-color: #d0c7be;
+    -fx-text-fill: #FFFFFF;
+}
 
 /* Style for tab text */
 .tab .tab-label {

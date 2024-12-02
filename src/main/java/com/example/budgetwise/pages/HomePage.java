@@ -4,51 +4,57 @@ import com.example.budgetwise.Credits;
 import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
 import com.example.budgetwise.tabs.*;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * This file acts as the main homepage and where the main application is held
+ */
 public class HomePage extends Stage {
+
+    /**
+     * @author Asad Bashir, Lujia Yang
+     * use this page to show functionalities
+     */
     //no content just use it to show here is the home page
+
     public HomePage(){
         BorderPane borderPane=new BorderPane();
 
+        /**
+         * Tabs for the user to navigate to the different parts of the application
+         */
         TabPane tabPane = new TabPane();
-
-        AddTransactionTab addTransactionTab = new AddTransactionTab();
+        AddTransactionTab addTransactionTab = AddTransactionTab.getInstance();
         AddAccountTab addAccountTab = new AddAccountTab();
-        //ViewTransactionTab addTranscationTable = new ViewTransactionTab();
 
-        // ViewAccountTab viewAccountTable=new ViewAccountTab();
-        EditAccountTab editAccountTab = new EditAccountTab();
-        // ViewAccountTab addAccountTable=new ViewAccountTab();
         CategoryTab categoryTab = new CategoryTab();
-        ViewAccountsTab viewAccountsTab= ViewAccountsTab.getInstance();
-        tabPane.getTabs().addAll(viewAccountsTab,addAccountTab,addTransactionTab,categoryTab, editAccountTab);
 
+
+
+        EditAccountTab editAccountTab = EditAccountTab.getInstance();
+        ViewAccountsTab viewAccountsTab= ViewAccountsTab.getInstance();
+        tabPane.getTabs().addAll(viewAccountsTab,addAccountTab,addTransactionTab,editAccountTab,categoryTab);
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
 
-        String css = getClass().getResource("/styles.css").toExternalForm();
-        tabPane.getStylesheets().add(css);
 
         borderPane.setCenter(tabPane);
-        //set menu bar
+        /**
+         * Set menu bar
+         */
         MenuBar menuBar=new MenuBar();
         Menu fileMenu=new Menu("File");
-        fileMenu.getStyleClass().add("label-style");
         Menu creditsMenu=new Menu("About");
         MenuItem about=new MenuItem("Credits");
-        about.getStyleClass().add("credits");
         MenuItem exit=new MenuItem("Exit");
         exit.setOnAction(e->System.exit(0));
         fileMenu.getItems().add(exit);
@@ -59,49 +65,7 @@ public class HomePage extends Stage {
             credit.show();
         });
         borderPane.setTop(menuBar);
-
-        String css1 = getClass().getResource("/styles.css").toExternalForm();
-
-        //scene with css
-        Scene scene = new Scene(borderPane, 800, 850);
-        scene.getStylesheets().add(css1);
         super.setTitle("homepage");
-        super.setScene(scene);
-
-
-
-        ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
-        ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
-        ArrayList<Currency> currencies = CurrencyTable.getInstance().getAllCurrency();
-        ArrayList<TransactionType> transactionTypes = TransactionTypeTable.getInstance().getAllTransactionTypes();
-        ArrayList<Transaction> transactions = TransactionTable.getInstance().getAllTransactions();
-        ArrayList<Category> categories = CategoryTable.getInstance().getAllCategories();
-
-        for (Account account : accounts){
-            System.out.println(account);
-        }
-
-        for (AccountType accountType : accountTypes){
-            System.out.println(accountType);
-        }
-
-        for (Currency category : currencies){
-            System.out.println(category);
-        }
-
-        for (TransactionType transactionType : transactionTypes){
-            System.out.println(transactionType);
-        }
-
-        for (Transaction transaction : transactions){
-            System.out.println(transaction);
-        }
-
-        for (Category category : categories){
-            System.out.println(category);
-        }
-
-
-
+        super.setScene(new Scene(borderPane,800,850));
     }
 }

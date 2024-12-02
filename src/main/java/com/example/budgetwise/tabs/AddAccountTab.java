@@ -13,6 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+/**
+ * This class allows the user to add an account
+ */
 public class AddAccountTab extends Tab {
 
     public AddAccountTab(){
@@ -26,24 +29,32 @@ public class AddAccountTab extends Tab {
         root.getStyleClass().add("tab-background");
 
 
-
-        //creating label and textfield for account form
+        /**
+         * creating label and textfield for account form
+         */
         Label nameLabel = new Label("Account Name:");
         nameLabel.getStyleClass().add("label-style");
         TextField nameField = new TextField();
         nameField.getStyleClass().add("textfield-style");
+
         nameField.setPrefWidth(150);
         root.add(nameLabel,0,0);
         root.add(nameField,1,0);
 
-        //For Account type
+        /**
+         * For Account type
+         */
         Label accountLabel = new Label("Account Type:");
         accountLabel.getStyleClass().add("label-style");
-        ComboBox<AccountType> accountComboBox = new ComboBox<>();
-        accountComboBox.getStyleClass().add("combo-box");
 
-        // ArrayList of accounts type
-        //accountComboBox.getItems().addAll("Checking", "Savings");
+        nameLabel.getStyleClass().add("label-style");
+
+        ComboBox<AccountType> accountComboBox = new ComboBox<>();
+        accountComboBox.getStyleClass().add("textfield-style");
+
+        /**
+         * ArrayList of accounts type
+         */
         accountComboBox.setItems(FXCollections.observableArrayList(AccountTypeTable.getInstance().getAllAccountTypes()));
         accountComboBox.setValue(AccountTypeTable.getInstance().getAllAccountTypes().get(0));
 
@@ -51,24 +62,33 @@ public class AddAccountTab extends Tab {
         root.add(accountComboBox, 1, 1);
 
 
-        //For account balance
+        /**
+         * For account balance
+         */
         Label amountLabel = new Label("Balance:");
         amountLabel.getStyleClass().add("label-style");
+
         TextField amountField = new TextField();
         amountField.getStyleClass().add("textfield-style");
+
         amountField.setPrefWidth(120);
         root.add(amountLabel,0,2);
         root.add(amountField,1,2);
 
         Label currency = new Label("Currency:");
         currency.getStyleClass().add("label-style");
+
         ComboBox<Currency> currencyComboBox = new ComboBox<>();
-        currencyComboBox.getStyleClass().add("combo-box");
+        currencyComboBox.getStyleClass().add("textfield-style");
         currencyComboBox.setItems(FXCollections.observableArrayList(CurrencyTable.getInstance().getAllCurrency()));
         currencyComboBox.setValue(CurrencyTable.getInstance().getAllCurrency().get(0));
 
         root.add(currency, 0,3);
         root.add(currencyComboBox,1,3);
+
+        /**
+         * Error and success are for form validation
+         */
 
         Text error = new Text("Please fill all fields");
         error.setFill(Color.rgb(255,0,0,0));
@@ -82,9 +102,10 @@ public class AddAccountTab extends Tab {
 
 
 
-        Button button = new Button("Add Account");
-        button.getStyleClass().add("button-style");
-        root.add(button,1,4);
+        Button addAccountBtn = new Button("Add Account");
+        addAccountBtn.getStyleClass().add("button-style");
+
+        root.add(addAccountBtn,1,4);
 
         this.setOnSelectionChanged(event -> {
             error.setFill(Color.rgb(255,0,0,0));
@@ -98,7 +119,7 @@ public class AddAccountTab extends Tab {
         String css = getClass().getResource("/styles.css").toExternalForm();
         root.getStylesheets().add(css);
 
-        button.setOnAction(event -> {
+        addAccountBtn.setOnAction(event -> {
             String accountName = nameField.getText();
             AccountType accountType = accountComboBox.getValue();
 
@@ -113,6 +134,8 @@ public class AddAccountTab extends Tab {
                 success.setFill(Color.rgb(0,255,0,1));
 
                 ViewAccountsTab.getInstance().refresh();
+                AddTransactionTab.getInstance().refresh();
+                EditAccountTab.getInstance().refresh();
             }else{
                 error.setFill(Color.rgb(255,0,0,1));
                 success.setFill(Color.rgb(0,255,0,0));

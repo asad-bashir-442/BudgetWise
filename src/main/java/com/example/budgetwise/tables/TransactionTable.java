@@ -84,6 +84,12 @@ public class TransactionTable implements TransactionDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * to get a list of transactions for a specific account ID from the database
+     * @param accountId
+     * @return the transaction for the specified account
+     */
     public ArrayList<Transaction> searchTransaction(int accountId){
 
         String query=" SELECT * FROM "+ TABLE_TRANSACTION+" WHERE "+DBConst.TRANSACTION_COLUMN_ACCOUNT_ID+" = "+accountId;
@@ -110,16 +116,26 @@ public class TransactionTable implements TransactionDAO {
         return transactions;
     }
 
-    public double getCategoryAmount(int cat){
+
+    /**
+     *to get total transaction amount for a specific category from the database.
+     * @param cat the category id
+     * @return the total amount of transactions for the specified category
+     */
+
+
+    public double getCategoryAmount(int cat,int accountId){
+
         double amount=0;
         try {
             PreparedStatement getAmount = db.getConnection()
-                    .prepareStatement("SELECT "+TRANSACTION_COLUMN_AMOUNT + " FROM "+TABLE_TRANSACTION + " WHERE "
-                                    +TRANSACTION_COLUMN_CATEGORY_ID+ " = '" + cat + "'", ResultSet.TYPE_SCROLL_SENSITIVE,
+                    .prepareStatement("SELECT "+TRANSACTION_COLUMN_AMOUNT + " FROM "+TABLE_TRANSACTION +
+                                    " JOIN " + TABLE_TRANSACTION_TYPE + " ON " + TABLE_TRANSACTION+ "."+TRANSACTION_COLUMN_TYPE_ID + " = " + TABLE_TRANSACTION_TYPE+"."+TRANSACTION_TYPE_COLUMN_ID +
+                                    " WHERE "
+                                    +TRANSACTION_COLUMN_CATEGORY_ID+ " = '" + cat + "'" + " AND " + TRANSACTION_COLUMN_ACCOUNT_ID +
+                            " = '" + accountId + "'" + " AND " + TABLE_TRANSACTION_TYPE+"."+TRANSACTION_TYPE_COLUMN_NAME + " = 'Credit'" , ResultSet.TYPE_SCROLL_SENSITIVE,
                             ResultSet.CONCUR_UPDATABLE);
             ResultSet data = getAmount.executeQuery();
-            //data.last();
-            //amount = data.getRow();
             while(data.next()){
                 amount += data.getDouble(TRANSACTION_COLUMN_AMOUNT);
             }
