@@ -29,30 +29,32 @@
 .textfield-style {
     -fx-background-color: #1b2141;
     -fx-text-fill: white;
-    /*-fx-pref-width: 80px;*/
+    -fx-pref-width: 400px;
+    -fx-pref-height: 40px;
     -fx-border-color: #e9e2da;
     -fx-border-radius: 5px;
-    -fx-padding:5 10;
-    -fx-font-size: 14px;
+    -fx-padding:10px;
+    -fx-font-size: 16px;
     -fx-background-radius: 5px;
+
 }
 
 .textfield:focused {
-    -fx-background-color: #1b2141; /* Same navy blue background */
-    -fx-text-fill: white;          /* Keep text color white */
-    -fx-border-color: #e9e2da;     /* Beige border for focus */
-    -fx-border-width: 2px;         /* Slightly thicker border on focus */
+    -fx-background-color: #1b2141; 
+    -fx-text-fill: white;
+    -fx-border-color: #e9e2da;
+    -fx-border-width: 2px;
 }
 
 .textarea-style{
-    -fx-background-color:#1b2141; /* Beige background for TextArea */
-    -fx-control-inner-background: #1b2141; /* Navy blue inner content */
+    -fx-background-color:#1b2141;
+    -fx-control-inner-background: #1b2141;
 
-    -fx-text-fill: white;        /* Navy blue text color */
-    -fx-font-size: 14px;           /* Font size */
-    -fx-padding: 10 15;            /* Padding inside text area */
-    -fx-border-color: #1b2141;     /* Navy blue border */
-    -fx-border-radius: 10px;       /* Larger rounded corners for TextArea */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 15;
+    -fx-border-color: #1b2141;
+    -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
 
@@ -160,6 +162,7 @@ textarea:focused{
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-padding: 10px;
+    -fx-alignment: center;
 }
 
 /* Style for selected tab */+

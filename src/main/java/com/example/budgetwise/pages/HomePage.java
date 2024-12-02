@@ -4,12 +4,14 @@ import com.example.budgetwise.Credits;
 import com.example.budgetwise.models.*;
 import com.example.budgetwise.tables.*;
 import com.example.budgetwise.tabs.*;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class HomePage extends Stage {
 
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
 
         String css = getClass().getResource("/styles.css").toExternalForm();
         tabPane.getStylesheets().add(css);
