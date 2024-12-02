@@ -11,11 +11,16 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class EditAccountTab extends Tab {
 
-    public EditAccountTab(){
+    private static EditAccountTab instance;
+
+    private ComboBox<Account> accountComboBox = new ComboBox<>();
+
+    private EditAccountTab(){
         this.setText("Edit Account");
 
         GridPane root = new GridPane();
@@ -26,15 +31,10 @@ public class EditAccountTab extends Tab {
 
 
         Label accountLabel = new Label("Account");
-        ComboBox<Account> accountComboBox = new ComboBox<>();
 
-        accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
 
-        if (AccountTable.getInstance().getAllAccounts().size() >=1){
-            accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
-        }else{
-            accountComboBox.setPlaceholder(new Text("Please create an account"));
-        }
+
+        refresh();
 
 
         root.add(accountLabel,0,1);
@@ -71,13 +71,46 @@ public class EditAccountTab extends Tab {
         root.add(deleteBtn,2,5);
 
 
+        Text error = new Text("Please fill all fields");
+        error.setFill(Color.rgb(255,0,0,0));
+        root.add(error,1,6);
+
+
+        Text success = new Text("Account successfully updated");
+        success.setFill(Color.rgb(0,255,0,0));
+
+        root.add(success,1,6);
+
+
+        this.setOnSelectionChanged(event -> {
+            error.setFill(Color.rgb(255,0,0,0));
+
+            success.setFill(Color.rgb(0,255,0,0));
+
+        });
+
         this.setContent(root);
 
 
         deleteBtn.setOnAction(event -> {
             Account selectedAccount = accountComboBox.getValue();
 
-            AccountTable.getInstance().deleteAccount(selectedAccount);
+
+            if (selectedAccount != null){
+                error.setFill(Color.rgb(255,0,0,0));
+                success.setFill(Color.rgb(0,255,0,1));
+                AccountTable.getInstance().deleteAccount(selectedAccount);
+                success.setText("Account Successfully deleted");
+                ViewAccountsTab.getInstance().refresh();
+                AddTransactionTab.getInstance().refresh();
+                refresh();
+            }else{
+                error.setFill(Color.rgb(255,0,0,1));
+                success.setFill(Color.rgb(0,255,0,0));
+                error.setText("Please Choose an account");
+            }
+
+
 
         });
 
@@ -87,19 +120,47 @@ public class EditAccountTab extends Tab {
             AccountType selectedAccountType = accountTypeComboBox.getValue();
             String selectedName = nameField.getText();
 
-            System.out.println(selectedAccount);
-            selectedAccount.setName(selectedName);
-            selectedAccount.setCurrency_id(selectedCurrency.getId());
-            selectedAccount.setType_id(selectedAccountType.getId());
+            if (selectedName.length() >=1 && selectedAccount != null){
+                selectedAccount.setName(selectedName);
+                selectedAccount.setCurrency_id(selectedCurrency.getId());
+                selectedAccount.setType_id(selectedAccountType.getId());
+                AccountTable.getInstance().updateAccount(selectedAccount);
+                error.setFill(Color.rgb(255,0,0,0));
+                success.setFill(Color.rgb(0,255,0,1));
+                success.setText("Account successfully updated");
+                ViewAccountsTab.getInstance().refresh();
+                AddTransactionTab.getInstance().refresh();
+                refresh();
+            }else{
+                error.setFill(Color.rgb(255,0,0,1));
+                success.setFill(Color.rgb(0,255,0,0));
+                error.setText("Please fill all fields");
+            }
 
 
 
-
-            System.out.println(selectedAccount);
-
-            AccountTable.getInstance().updateAccount(selectedAccount);
         });
 
 
     }
+
+    public void refresh(){
+        accountComboBox.setItems(FXCollections.observableArrayList(AccountTable.getInstance().getAllAccounts()));
+
+        if (AccountTable.getInstance().getAllAccounts().size() >=1){
+            accountComboBox.setValue(AccountTable.getInstance().getAllAccounts().get(0));
+        }else{
+            accountComboBox.setPlaceholder(new Text("Please create an account"));
+        }
+
+    }
+
+    public static EditAccountTab getInstance(){
+        if (instance == null){
+            instance = new EditAccountTab();
+        }
+        return instance;
+    }
+
+
 }

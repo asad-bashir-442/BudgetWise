@@ -99,6 +99,8 @@ public class AddAccountTab extends Tab {
                 success.setFill(Color.rgb(0,255,0,1));
 
                 ViewAccountsTab.getInstance().refresh();
+                AddTransactionTab.getInstance().refresh();
+                EditAccountTab.getInstance().refresh();
             }else{
                 error.setFill(Color.rgb(255,0,0,1));
                 success.setFill(Color.rgb(0,255,0,0));
