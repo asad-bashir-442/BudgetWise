@@ -1,3 +1,12 @@
+buildscript{
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "mysql:mysql-connector-java:8.0.26"
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
@@ -26,18 +35,18 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.example.budgetwise'
-    mainClass = 'com.example.budgetwise.HelloApplication'
+    mainClass = 'com.example.budgetwise.MainEntry'
 }
 
 javafx {
-    version = '20.0.1'
+    version = '20.0.2'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
 dependencies {
-
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation("mysql:mysql-connector-java:8.0.32")
 }
 
 test {

@@ -1,0 +1,75 @@
+
+* {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 16px;
+    -fx-text-fill: #2C3E50;
+}
+
+
+.scene-background {
+    -fx-background-color: #E9E2DA;
+}
+
+/* Tab background styling */
+.tab-background {
+    -fx-background-color: #E9E2DA;
+    -fx-padding: 20px;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 10px;
+}
+
+/* Label styling for all fields */
+.label-style {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+/* TextField styling for all fields */
+.textfield-style {
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.textarea-style{
+    -fx-background-color: #1b2141;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
+
+
+
+/* Button styling for all buttons */
+.button-style {
+    -fx-background-color: #2C3E50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 25px;
+    -fx-border-radius: 12px;
+    -fx-effect: innershadow(gaussian, #2C3E50, 10, 0.5, 1, 1);
+}
+
+/* Button hover effect */
+.button-style:hover {
+    -fx-background-color: #1b2141;
+    -fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);
+}
+
+
+
+.grid-container {
+    -fx-background-color: #E9E2DA;
+    -fx-padding: 20px;
+    -fx-border-color: #2C3E50;
+    -fx-border-radius: 12px;
+}
+
+
+.scene-background {
+    -fx-background-color: #E9E2DA;
+}
