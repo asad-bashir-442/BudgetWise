@@ -18,6 +18,14 @@ import java.util.ArrayList;
  * This file acts as the main homepage and where the main application is held
  */
 public class HomePage extends Stage {
+<<<<<<< HEAD
+=======
+    /**
+     * @author Asad Bashir, Lujia Yang
+     * use this page to show functionalities
+     */
+    //no content just use it to show here is the home page
+>>>>>>> 87be54dad54670854cb3408755c233f292ae7002
     public HomePage(){
         BorderPane borderPane=new BorderPane();
 

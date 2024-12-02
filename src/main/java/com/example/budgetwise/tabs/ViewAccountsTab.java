@@ -25,6 +25,19 @@ import java.util.ArrayList;
 /**
  * This class allows the user to view all their accounts and transactions
  */
+
+/**
+ * @author :Lujia, Asad
+ * a tab for user to check and managing accounts
+ * <p>it contains:</p>
+ * <ul>
+ *     <li>a table for displaying transactions</li>
+ *     <li>a combobox for selecting account</li>
+ *     <li>a pie chart for viewing transaction breakdown details</li>
+ * </ul>
+ */
+
+
 public class ViewAccountsTab extends Tab {
     private ComboBox<Account> accountComboBox;
     private PieChart chart = new PieChart();;
@@ -126,7 +139,11 @@ public class ViewAccountsTab extends Tab {
     }
 
     /**
+<<<<<<< HEAD
      * This method will generate the pie chart based on what accpunt is selected
+=======
+     * generates pie chart data based on transaction amount
+>>>>>>> 87be54dad54670854cb3408755c233f292ae7002
      */
     private void generateChart() {
         if (chosenAccount == null){
@@ -153,7 +170,11 @@ public class ViewAccountsTab extends Tab {
     }
 
     /**
+<<<<<<< HEAD
      * This method will refresh the transaction table
+=======
+     * Refreshes the table view to display the latest transactions of the selected account.
+>>>>>>> 87be54dad54670854cb3408755c233f292ae7002
      */
     private void refreshTable(){
         TransactionTable table=TransactionTable.getInstance();
@@ -167,6 +188,10 @@ public class ViewAccountsTab extends Tab {
 
     }
 
+    /**
+     * get instance
+     * @return
+     */
     public static ViewAccountsTab getInstance() {
         if(instance == null){
             instance = new ViewAccountsTab();
@@ -175,7 +200,7 @@ public class ViewAccountsTab extends Tab {
     }
 
     /**
-     * This method will refresh the table, pie chart and comboBox
+     * Refreshes the table view to display the latest selected account.
      */
     public void refresh(){
         refreshTable();

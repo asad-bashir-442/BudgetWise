@@ -24,6 +24,18 @@ import static com.example.budgetwise.database.Const.*;
  * otherwise show them login form
  */
 public class LoginPage extends Stage {
+    /**
+     * @author Lujia Yang
+     * 0841073
+     * a graphical interface for user to login database
+     * the user enter credentials, it will test the connection
+     * <p>>this page contain</p>
+     * <ul>
+     *     <li>text filed for user input username password server location and db name</li>\
+     *     <li>a button to connect to database</li>
+     *     <li>if connection is successful, will go to homepage</li>
+     * </ul>
+     */
     public LoginPage(){
         GridPane root =new GridPane();
         root.setHgap(10);
@@ -92,7 +104,11 @@ public class LoginPage extends Stage {
     }
 
     /**
+<<<<<<< HEAD
      * This method takes the user credentials and save them to a text file
+=======
+     * this method is to save user information and user dont need to input again when he uses the database next time
+>>>>>>> 87be54dad54670854cb3408755c233f292ae7002
      * @param db_name
      * @param db_pass
      * @param dblocation
@@ -111,8 +127,12 @@ public class LoginPage extends Stage {
     }
 
     /**
+<<<<<<< HEAD
      * This method checks against the database if credentials given from the user are valid
      * and builds a proper connection to the database
+=======
+     * to validate the database connection using the user entered credentials.
+>>>>>>> 87be54dad54670854cb3408755c233f292ae7002
      * @return
      */
     public boolean validCredentials(){
