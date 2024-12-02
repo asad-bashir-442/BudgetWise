@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class HomePage extends Stage {
+    /**
+     * @author Asad Bashir, Lujia Yang
+     * use this page to show functionalities
+     */
     //no content just use it to show here is the home page
     public HomePage(){
         BorderPane borderPane=new BorderPane();

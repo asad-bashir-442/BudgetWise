@@ -19,6 +19,18 @@ import java.sql.DriverManager;
 import static com.example.budgetwise.database.Const.*;
 
 public class LoginPage extends Stage {
+    /**
+     * @author Lujia Yang
+     * 0841073
+     * a graphical interface for user to login database
+     * the user enter credentials, it will test the connection
+     * <p>>this page contain</p>
+     * <ul>
+     *     <li>text filed for user input username password server location and db name</li>\
+     *     <li>a button to connect to database</li>
+     *     <li>if connection is successful, will go to homepage</li>
+     * </ul>
+     */
     public LoginPage(){
         GridPane root =new GridPane();
         root.setHgap(10);
@@ -85,6 +97,15 @@ public class LoginPage extends Stage {
 
 
     }
+
+    /**
+     * this method is to save user information and user dont need to input again when he uses the database next time
+     * @param db_name
+     * @param db_pass
+     * @param dblocation
+     * @param dbuser
+     * @throws IOException
+     */
     public void saveUserInfo(String db_name, String db_pass ,String dblocation, String dbuser) throws IOException {
         String info="info.txt";
         FileWriter myWriter = new FileWriter(info);
@@ -95,6 +116,11 @@ public class LoginPage extends Stage {
 
         myWriter.close();
     }
+
+    /**
+     * to validate the database connection using the user entered credentials.
+     * @return
+     */
     public boolean validCredentials(){
         Connection connection;
         try{
