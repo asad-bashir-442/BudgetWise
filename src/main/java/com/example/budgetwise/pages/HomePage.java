@@ -35,14 +35,17 @@ public class HomePage extends Stage {
 
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        tabPane.getStylesheets().add(css);
 
         borderPane.setCenter(tabPane);
         //set menu bar
         MenuBar menuBar=new MenuBar();
         Menu fileMenu=new Menu("File");
+        fileMenu.getStyleClass().add("label-style");
         Menu creditsMenu=new Menu("About");
         MenuItem about=new MenuItem("Credits");
+        about.getStyleClass().add("credits");
         MenuItem exit=new MenuItem("Exit");
         exit.setOnAction(e->System.exit(0));
         fileMenu.getItems().add(exit);
@@ -53,6 +56,16 @@ public class HomePage extends Stage {
             credit.show();
         });
         borderPane.setTop(menuBar);
+
+        String css1 = getClass().getResource("/styles.css").toExternalForm();
+
+        //scene with css
+        Scene scene = new Scene(borderPane, 800, 850);
+        scene.getStylesheets().add(css1);
+        super.setTitle("homepage");
+        super.setScene(scene);
+
+
 
         ArrayList<Account> accounts = AccountTable.getInstance().getAllAccounts();
         ArrayList<AccountType> accountTypes = AccountTypeTable.getInstance().getAllAccountTypes();
@@ -85,7 +98,7 @@ public class HomePage extends Stage {
             System.out.println(category);
         }
 
-        super.setTitle("homepage");
-        super.setScene(new Scene(borderPane,800,850));
+
+
     }
 }

@@ -13,6 +13,10 @@ public class CategoryTab extends Tab {
 
     public CategoryTab(){
         this.setText(" Add Category ");
+       // this.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: #1b2141; -fx-padding: 10px;");
+       // this.getStyleClass().add("tab");
+
+
 
         GridPane root = new GridPane();
 

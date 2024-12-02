@@ -118,40 +118,122 @@ textarea:focused{
 
 
 .table-view {
-    -fx-background-color: #e9e2da; /* Matches your background */
-    -fx-border-color: #d0c7be;    /* Slightly darker border */
+    -fx-background-color: #e9e2da;
+    -fx-border-color: #d0c7be;
     -fx-border-width: 1px;
     -fx-alternate-row-fill-visible: true;
-    -fx-control-inner-background: #f3ece6; /* Light complementary background */
+    -fx-control-inner-background: #f3ece6;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #dcd3c8; /* Slightly darker shade for headers */
+    -fx-background-color: #dcd3c8;
 }
 
 .table-view .column-header {
-    -fx-text-fill: #5a4f47; /* Warm dark gray text */
+    -fx-text-fill: #5a4f47;
     -fx-font-weight: bold;
 }
 
 .table-view .cell {
-    -fx-text-fill: #5a4f47; /* Warm dark gray text for rows */
+    -fx-text-fill: #5a4f47;
     -fx-font-size: 14px;
-    -fx-background-color: #f3ece6; /* Light complementary shade */
+    -fx-background-color: #f3ece6;
 }
 
 .table-view .cell:filled:even {
-    -fx-background-color: #e9e2da; /* Matches the main background */
+    -fx-background-color: #e9e2da;
 }
 
 .table-view .cell:filled:selected {
-    -fx-background-color: #d2cabf; /* Highlighted rows in a darker shade */
-    -fx-text-fill: #000000;        /* Black text for contrast on selection */
+    -fx-background-color: #d2cabf;
+    -fx-text-fill: #000000;
 }
 
 .table-view .focus {
-    -fx-border-color: transparent; /* Removes focus border */
+    -fx-border-color: transparent;
 }
+
+
+/* Style for all tabs */
+.tab {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}
+
+/* Style for selected tab */+
+.tab:selected {
+   -fx-background-color: #d0c7be;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Style for tab text */
+.tab .tab-label {
+    -fx-text-fill: #1b2141;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-padding: 5px;
+}
+
+.tab:focused{
+    -fx-border-color: transparent;
+    -fx-background-color: #e9e2da;
+
+}
+.tab:selected{
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: #ffffff;
+}
+
+/*style for menuBar */
+
+.menu-bar {
+    -fx-background-color: #e9e2da;
+}
+
+.menu-item {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-color: #e9e2da;
+}
+
+.menu-item:hover {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: black;
+}
+
+.menu {
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: black;
+}
+
+.menu-item.credits {
+    -fx-text-fill: black;
+}
+
+.menu-item.credits:hover {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: black;
+}
+
+.menu-item.file,
+.menu-item.exit {
+    -fx-text-fill: black;
+}
+
+.menu-item.file:hover,
+.menu-item.exit:hover {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: black;
+}
+
+.menu-item:focused {
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: black;
+}
+
 
 
 
