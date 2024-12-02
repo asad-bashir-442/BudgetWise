@@ -29,35 +29,60 @@
 .textfield-style {
     -fx-background-color: #1b2141;
     -fx-text-fill: white;
-    -fx-border-color: #2C3E50;
-    -fx-border-radius: 10px;
-    -fx-padding: 10px;
+    -fx-pref-width: 400px;
+    -fx-pref-height: 40px;
+    -fx-border-color: #e9e2da;
+    -fx-border-radius: 5px;
+    -fx-padding:10px;
+    -fx-font-size: 16px;
+    -fx-background-radius: 5px;
+
+}
+
+.textfield:focused {
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+    -fx-border-color: #e9e2da;
+    -fx-border-width: 2px;
 }
 
 .textarea-style{
-    -fx-background-color: #1b2141;
-    -fx-border-color: #2C3E50;
+    -fx-background-color:#1b2141;
+    -fx-control-inner-background: #1b2141;
+
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 15;
+    -fx-border-color: #1b2141;
     -fx-border-radius: 10px;
-    -fx-padding: 10px;
+    -fx-background-radius: 10px;
 }
 
+textarea:focused{
+    -fx-border-width: 2px;
+    -fx-border-color: #e9e2da;
+    -fx-background-color: #1b2141;
+    -fx-control-inner-background: #1b2141; /* Navy blue inner content */
+
+    -fx-text-fill: white
+}
 
 
 
 /* Button styling for all buttons */
 .button-style {
-    -fx-background-color: #2C3E50;
+    -fx-background-color: #1b2141;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 12px 25px;
     -fx-border-radius: 12px;
-    -fx-effect: innershadow(gaussian, #2C3E50, 10, 0.5, 1, 1);
+    /* -fx-effect: innershadow(gaussian, #2C3E50, 10, 0.5, 1, 1); */
 }
 
 /* Button hover effect */
 .button-style:hover {
-    -fx-background-color: #1b2141;
-    -fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);
+    -fx-background-color: #2C3E50;
+    /*-fx-effect: innershadow(gaussian, #1b2141, 10, 0.5, 1, 1);*/
 }
 
 
@@ -73,3 +98,144 @@
 .scene-background {
     -fx-background-color: #E9E2DA;
 }
+
+/* comboBox Styling */
+.combo-box {
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+    -fx-border-color: #e9e2da;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #1b2141;
+    -fx-text-fill: white;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: #1b2141;
+}
+
+
+.table-view {
+    -fx-background-color: #e9e2da;
+    -fx-border-color: #d0c7be;
+    -fx-border-width: 1px;
+    -fx-alternate-row-fill-visible: true;
+    -fx-control-inner-background: #f3ece6;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #dcd3c8;
+}
+
+.table-view .column-header {
+    -fx-text-fill: #5a4f47;
+    -fx-font-weight: bold;
+}
+
+.table-view .cell {
+    -fx-text-fill: #5a4f47;
+    -fx-font-size: 14px;
+    -fx-background-color: #f3ece6;
+}
+
+.table-view .cell:filled:even {
+    -fx-background-color: #e9e2da;
+}
+
+.table-view .cell:filled:selected {
+    -fx-background-color: #d2cabf;
+    -fx-text-fill: #000000;
+}
+
+.table-view .focus {
+    -fx-border-color: transparent;
+}
+
+
+/* Style for all tabs */
+.tab {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.tab:selected {
+    -fx-background-color: #d0c7be;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Style for tab text */
+.tab .tab-label {
+    -fx-text-fill: #1b2141;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-padding: 5px;
+}
+
+.tab:focused{
+    -fx-border-color: transparent;
+    -fx-background-color: #e9e2da;
+
+}
+.tab:selected{
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: #ffffff;
+}
+
+/*style for menuBar */
+
+.menu-bar {
+    -fx-background-color: #e9e2da;
+}
+
+.menu-item {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-color: #e9e2da;
+}
+
+.menu-item:hover {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: black;
+}
+
+.menu {
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: black;
+}
+
+.menu-item.credits {
+    -fx-text-fill: black;
+}
+
+.menu-item.credits:hover {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: black;
+}
+
+.menu-item.file,
+.menu-item.exit {
+    -fx-text-fill: black;
+}
+
+.menu-item.file:hover,
+.menu-item.exit:hover {
+    -fx-background-color: #f6f5f0;
+    -fx-text-fill: black;
+}
+
+.menu-item:focused {
+    -fx-background-color: #e9e2da;
+    -fx-text-fill: black;
+}
+
+
+
+
